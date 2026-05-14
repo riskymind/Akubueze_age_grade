@@ -452,6 +452,13 @@ model AnnouncementRead {
 
 ---
 
+### F. AI Features
+
+- 🤖 AI  Meeting Minutes Summarizer
+- 📝 AI  Member Onboarding Assistant
+
+---
+
 ## Tech Stack
 
 | Layer | Technology | Notes |
@@ -465,6 +472,7 @@ model AnnouncementRead {
 | **File Uploads** | [Uploadthing](https://uploadthing.com/) | Meeting minutes, receipts, avatars |
 | **Email** | [Resend](https://resend.com/) | Transactional emails (credentials, reminders) |
 | **Notifications** | Firebase (optional) | Push notifications for announcements |
+| **AI**      | OpenAI GPT-4o Mini        | Cost-effective for AI features      |
 
 ### Useful Libraries to Consider
 
@@ -478,6 +486,33 @@ model AnnouncementRead {
 | [`next-safe-action`](https://next-safe-action.dev/) | Type-safe server actions |
 
 ---
+
+## 🎨 UI/UX Guidelines
+
+### Design Principles
+
+- **Modern & Minimal** - Developer-focused aesthetic
+- **Dark Mode Default** - Light mode optional
+- **Clean Typography** - Generous whitespace
+- **Subtle Accents** - Borders and shadows used sparingly
+- **Syntax Highlighting** - For all code blocks
+
+### Design References
+
+- [Notion](https://notion.so) - Clean organization
+- [Linear](https://linear.app) - Modern dev aesthetic
+- [Raycast](https://raycast.com) - Quick access patterns
+
+### Screenshots
+
+Refer to the screenshots below as a base for the dashboard UI. It does not have to be exact. Use it as a reference:
+
+- @context/screenshots/dashboard.png
+- @context/screenshots/meetings.png
+- @context/screenshots/members.png
+- @context/screenshots/payments.png
+- @context/screenshots/meeting-drawer.png
+- @context/screenshots/member-drawer.png
 
 ## Project Architecture
 
