@@ -1,27 +1,29 @@
 # Current Feature
 
-Prisma + Neon PostgreSQL Setup
+Seed Data
 
 ## Status
 
-Completed
+In Progress
 
 ## Goals
 
-- Install and configure Prisma 7 (review upgrade guide for breaking changes)
-- Connect to Neon PostgreSQL (serverless) via `DATABASE_URL`
-- Create initial Prisma schema based on data models in `project-overview.md`
-- Include NextAuth models: `Account`, `Session`, `VerificationToken`
-- Add appropriate indexes and cascade deletes
-- Run initial migration with `prisma migrate dev` (never `db push`)
-- Create `lib/prisma.ts` singleton client
+- Create `prisma/seed.ts` with realistic sample data for all models
+- Cover all user roles: `SUPER_ADMIN`, `ADMIN`, `MEMBER`
+- Cover all member statuses: `ACTIVE`, `SUSPENDED`, `INACTIVE`
+- Seed 10 meetings (7 completed, 3 scheduled) spanning 6 months past and 2 months future
+- Seed attendance records with realistic profiles per member
+- Seed 7 months of payment history (monthly dues + levies, fines, donations)
+- Seed 6 announcements with partial read tracking
+- Wire up `npx prisma db seed` via `package.json` prisma config
 
 ## Notes
 
-- Use Prisma 7 — has breaking changes from v6. Read the full upgrade guide before starting.
-- `DATABASE_URL` points to the **development branch** on Neon. A separate production branch will exist later.
-- Always create migrations (`prisma migrate dev`), never push directly unless explicitly told to.
-- Schema is a rough draft from `project-overview.md` — adjust field names, types, and relations as needed before migrating.
+- Spec defined in `context/features/seed-spec.md`
+- Imports enums from `lib/generated/prisma/client` (Prisma 7 custom output path)
+- Uses PrismaPg adapter — same pattern as `lib/prisma.ts`
+- Run with `npx prisma db seed` or `npx prisma migrate reset` (resets + reseeds)
+- Default password for all seeded users: `Akubueze@2026`
 
 ## History
 
@@ -32,3 +34,4 @@ Completed
 - **2026-05-14** — Dashboard UI Phase 2: Collapsible sidebar with drawer toggle icon, user avatar area at the bottom, mobile Sheet drawer (always a drawer on mobile view). Added ShadCN Sheet and Avatar components.
 - **2026-05-14** — Dashboard UI Phase 3: Built main dashboard content area with 4 stats cards (Total Members, Upcoming Meetings, Payments This Month, Attendance Rate), Recent Activity list, Announcements panel, and Upcoming Meetings list. Data sourced from mock-data.ts.
 - **2026-05-15** — Prisma 7 + Neon PostgreSQL setup: Installed Prisma 7 with @prisma/adapter-pg (driver adapter required in v7), created prisma.config.ts for DB URL config, full schema with all models + NextAuth models (Account, Session, VerificationToken), indexes, and cascade deletes. Generated client to lib/generated/prisma/. Initial migration applied to Neon dev branch. Added scripts/test-db.ts for connection verification.
+- **2026-05-15** — Seed data: Created prisma/seed.ts with 15 users, 10 meetings, attendance records, 7 months of payments, 6 announcements, and announcement reads. Installed bcryptjs + date-fns. Wired npx prisma db seed via package.json.
