@@ -1,0 +1,245 @@
+// Prisma 7: provider is "prisma-client" (not "prisma-client-js")
+// output is required in Prisma 7
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+// Prisma 7: url is no longer in schema — moved to prisma.config.ts
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  MEMBER
+}
+
+enum MemberStatus {
+  ACTIVE
+  SUSPENDED
+  INACTIVE
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum MeetingType {
+  GENERAL
+  EXECUTIVE
+  EMERGENCY
+  ANNUAL
+}
+
+enum MeetingStatus {
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  EXCUSED
+}
+
+enum PaymentType {
+  MONTHLY_DUES
+  DEVELOPMENT_LEVY
+  EVENT_CONTRIBUTION
+  FINE
+  DONATION
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  WAIVED
+}
+
+// ─────────────────────────────────────────
+// MODELS
+// ─────────────────────────────────────────
+
+// Merged with NextAuth User requirements
+model User {
+  id                String       @id @default(cuid())
+  fullName          String
+  email             String       @unique
+  emailVerified     DateTime?    // required by NextAuth
+  phone             String?
+  passwordHash      String?      // nullable for NextAuth OAuth accounts
+  occupation        String?
+  address           String?
+  gender            Gender?
+  role              Role         @default(MEMBER)
+  status            MemberStatus @default(ACTIVE)
+  mustResetPassword Boolean      @default(true)
+  profileImageUrl   String?
+  dateJoined        DateTime     @default(now())
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  createdById     String?
+  createdBy       User?          @relation("CreatedMembers", fields: [createdById], references: [id])
+  createdMembers  User[]         @relation("CreatedMembers")
+
+  // Relations
+  attendances      Attendance[]
+  payments         Payment[]
+  announcements    Announcement[]
+  announcementRead AnnouncementRead[]
+
+  // NextAuth relations
+  accounts  Account[]
+  sessions  Session[]
+
+  @@index([role])
+  @@index([status])
+  @@map("users")
+}
+
+model Meeting {
+  id          String        @id @default(cuid())
+  title       String
+  type        MeetingType
+  status      MeetingStatus @default(SCHEDULED)
+  scheduledAt DateTime
+  location    String?
+  agenda      String?
+  minutesUrl  String?
+  notes       String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  attendances Attendance[]
+
+  @@index([status])
+  @@index([scheduledAt])
+  @@map("meetings")
+}
+
+model Attendance {
+  id       String           @id @default(cuid())
+  status   AttendanceStatus @default(ABSENT)
+  remarks  String?
+  markedAt DateTime         @default(now())
+
+  userId    String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  meetingId String
+  meeting   Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, meetingId])
+  @@index([userId])
+  @@index([meetingId])
+  @@map("attendances")
+}
+
+model Payment {
+  id          String        @id @default(cuid())
+  type        PaymentType
+  status      PaymentStatus @default(PENDING)
+  amount      Float
+  description String?
+  receiptUrl  String?
+  paidAt      DateTime?
+  dueDate     DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@index([type])
+  @@map("payments")
+}
+
+model Announcement {
+  id          String   @id @default(cuid())
+  title       String
+  body        String
+  isPinned    Boolean  @default(false)
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Restrict)
+
+  reads AnnouncementRead[]
+
+  @@index([authorId])
+  @@index([isPinned])
+  @@map("announcements")
+}
+
+model AnnouncementRead {
+  id     String   @id @default(cuid())
+  readAt DateTime @default(now())
+
+  announcementId String
+  announcement   Announcement @relation(fields: [announcementId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([announcementId, userId])
+  @@index([userId])
+  @@map("announcement_reads")
+}
+
+// ─────────────────────────────────────────
+// NEXTAUTH MODELS
+// ─────────────────────────────────────────
+
+model Account {
+  id                String  @id @default(cuid())
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  expires      DateTime
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
