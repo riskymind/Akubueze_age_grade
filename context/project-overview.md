@@ -39,7 +39,7 @@ The system replaces paper-based processes for:
 
 | # | Goal |
 |---|------|
-| 1 | Digitize day-to-day association operations |
+| 1 | Digitize month-to-month association operations |
 | 2 | Improve financial transparency and accountability |
 | 3 | Track attendance and payment compliance |
 | 4 | Enhance internal communication among members |
@@ -74,7 +74,7 @@ Full system control. Only one (or a small number) should hold this role.
 
 ### 🛠️ Admin / Executives
 
-Day-to-day operations. Assigned to elected executives or coordinators.
+Month-to-month operations. Assigned to elected executives or coordinators.
 
 | Permission | ✓ |
 |---|---|
@@ -174,6 +174,7 @@ Protected routes should use Next.js middleware to check session + role before re
 
 - Schedule, edit, and cancel meetings
 - Categorize meetings by type
+- Assign a host member to each meeting
 - Add/edit agendas
 - Upload meeting minutes (PDF/DOCX via Uploadthing)
 - Track meeting status lifecycle
@@ -188,6 +189,9 @@ Protected routes should use Next.js middleware to check session + role before re
 | `ANNUAL` | Yearly general assembly |
 
 **Meeting Status:** `SCHEDULED → IN_PROGRESS → COMPLETED → CANCELLED`
+
+**Meeting Host & Dues:**
+Each completed meeting has one designated host from the membership. Meeting dues are compulsory for all members per meeting: the host pays ₦5,000; every other member pays ₦1,000.
 
 ---
 
@@ -208,11 +212,32 @@ Protected routes should use Next.js middleware to check session + role before re
 - Generate and download receipts (PDF)
 - Full payment history per member
 
+
+**Payment Features:**
+
+The system should support:
+
+- Manual payment recording
+- Payment verification
+- Payment history
+- Outstanding balances
+- Meeting-by-meeting payment tracking
+- Financial summaries
+- Treasurer/Admin tracking dashboard
+
+Optional future features:
+
+- Online payment integration
+- Payment receipts
+- PDF receipt downloads
+- Automatic reminders
+
 **Payment Types:**
 
 | Type | Description |
 |---|---|
-| `MONTHLY_DUES` | Regular monthly contribution |
+| `MEETING_HOST_FEE` | Meeting dues — host rate (₦5,000/meeting) |
+| `MEETING_DUES` | Meeting dues — all other members (₦1,000/meeting, compulsory regardless of attendance) |
 | `DEVELOPMENT_LEVY` | Special project contributions |
 | `EVENT_CONTRIBUTION` | Event-specific collections |
 | `FINE` | Penalty for rule infractions |
@@ -255,22 +280,9 @@ Protected routes should use Next.js middleware to check session + role before re
 
 ---
 
-## Data Models (Rough Draft)
-
-> ⚠️ **These are rough draft Prisma models.** Field names, types, and relations will likely evolve during development. Review and adjust to match your actual business rules before running migrations.
+## Data Models
 
 ```prisma
-// schema.prisma
-
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
 // ─────────────────────────────────────────
 // ENUMS
 // ─────────────────────────────────────────
@@ -314,7 +326,8 @@ enum AttendanceStatus {
 }
 
 enum PaymentType {
-  MONTHLY_DUES
+  MEETING_HOST_FEE  // meeting dues — host rate (₦5,000)
+  MEETING_DUES      // meeting dues — all other members (₦1,000), compulsory regardless of attendance
   DEVELOPMENT_LEVY
   EVENT_CONTRIBUTION
   FINE
@@ -332,29 +345,35 @@ enum PaymentStatus {
 // ─────────────────────────────────────────
 
 model User {
-  id              String       @id @default(cuid())
-  fullName        String
-  email           String       @unique
-  phone           String?
-  passwordHash    String
-  occupation      String?
-  address         String?
-  gender          Gender?
-  role            Role         @default(MEMBER)
-  status          MemberStatus @default(ACTIVE)
-  mustResetPassword Boolean    @default(true)
-  profileImageUrl String?
-  dateJoined      DateTime     @default(now())
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime     @updatedAt
+  id                String       @id @default(cuid())
+  fullName          String
+  email             String       @unique
+  emailVerified     DateTime?
+  phone             String?
+  passwordHash      String?
+  occupation        String?
+  address           String?
+  gender            Gender?
+  role              Role         @default(MEMBER)
+  status            MemberStatus @default(ACTIVE)
+  mustResetPassword Boolean      @default(true)
+  profileImageUrl   String?
+  dateJoined        DateTime     @default(now())
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
 
-  // Relations
-  attendances     Attendance[]
-  payments        Payment[]
-  announcements   Announcement[]  // announcements created by this user
-  createdBy       User?        @relation("CreatedMembers", fields: [createdById], references: [id])
   createdById     String?
-  createdMembers  User[]       @relation("CreatedMembers")
+  createdBy       User?          @relation("CreatedMembers", fields: [createdById], references: [id])
+  createdMembers  User[]         @relation("CreatedMembers")
+
+  attendances      Attendance[]
+  payments         Payment[]
+  announcements    Announcement[]
+  announcementRead AnnouncementRead[]
+  hostedMeetings   Meeting[]          @relation("MeetingHost")
+
+  accounts  Account[]
+  sessions  Session[]
 
   @@map("users")
 }
@@ -366,29 +385,29 @@ model Meeting {
   status      MeetingStatus @default(SCHEDULED)
   scheduledAt DateTime
   location    String?
-  agenda      String?       // markdown or plain text
-  minutesUrl  String?       // Uploadthing URL
+  agenda      String?
+  minutesUrl  String?
   notes       String?
+  hostId      String?       // member designated to host this meeting
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 
-  // Relations
+  host        User?         @relation("MeetingHost", fields: [hostId], references: [id])
   attendances Attendance[]
 
   @@map("meetings")
 }
 
 model Attendance {
-  id        String           @id @default(cuid())
-  status    AttendanceStatus @default(ABSENT)
-  remarks   String?
-  markedAt  DateTime         @default(now())
+  id       String           @id @default(cuid())
+  status   AttendanceStatus @default(ABSENT)
+  remarks  String?
+  markedAt DateTime         @default(now())
 
-  // Relations
-  user      User    @relation(fields: [userId], references: [id])
   userId    String
-  meeting   Meeting @relation(fields: [meetingId], references: [id])
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   meetingId String
+  meeting   Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
 
   @@unique([userId, meetingId])
   @@map("attendances")
@@ -400,15 +419,14 @@ model Payment {
   status      PaymentStatus @default(PENDING)
   amount      Float
   description String?
-  receiptUrl  String?       // Uploadthing URL
+  receiptUrl  String?
   paidAt      DateTime?
   dueDate     DateTime?
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 
-  // Relations
-  user        User   @relation(fields: [userId], references: [id])
-  userId      String
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("payments")
 }
@@ -422,33 +440,35 @@ model Announcement {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  // Relations
-  author      User   @relation(fields: [authorId], references: [id])
-  authorId    String
-  reads       AnnouncementRead[]
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Restrict)
+
+  reads AnnouncementRead[]
 
   @@map("announcements")
 }
 
-// Tracks which members have read each announcement
 model AnnouncementRead {
-  id             String   @id @default(cuid())
-  readAt         DateTime @default(now())
+  id     String   @id @default(cuid())
+  readAt DateTime @default(now())
 
-  announcement   Announcement @relation(fields: [announcementId], references: [id])
   announcementId String
+  announcement   Announcement @relation(fields: [announcementId], references: [id], onDelete: Cascade)
 
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([announcementId, userId])
   @@map("announcement_reads")
 }
 ```
 
-> 💡 **Notes on the draft models:**
-> - `passwordHash` stores the bcrypt hash — never store plain-text passwords.
+> 💡 **Notes:**
+> - `passwordHash` is nullable to support future OAuth accounts (NextAuth).
 > - `mustResetPassword` enforces the first-login password change flow.
-> - `AnnouncementRead` enables per-member read tracking for the member dashboard.
-> - `Payment.receiptUrl` stores a Uploadthing-hosted PDF receipt link.
-> - Consider adding a separate `AuditLog` model for admin activity tracking (useful for the "Recent Activities" dashboard widget).
-> - If you support event-specific payments, consider a `MeetingPayment` join table linking `Payment` to `Meeting`.
+> - `Meeting.hostId` links to the member hosting that meeting; null for scheduled meetings without a host yet.
+> - `Payment.receiptUrl` stores an Uploadthing-hosted PDF receipt link.
+> - Consider adding a separate `AuditLog` model for admin activity tracking.
 
 ---
 
@@ -591,4 +611,4 @@ Credential delivery (temporary passwords) and meeting reminders are critical pat
 
 ---
 
-*Last updated: May 2026*
+*Last updated: May 2026 — added meeting host & dues model*

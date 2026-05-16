@@ -12,13 +12,7 @@ import {
   PaymentStatus,
 } from "../lib/generated/prisma/client";
 import bcrypt from "bcryptjs";
-import {
-  subMonths,
-  subWeeks,
-  subDays,
-  addWeeks,
-  setDate,
-} from "date-fns";
+import { subMonths, subWeeks, subDays, addWeeks, setDate } from "date-fns";
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
 const prisma = new PrismaClient({ adapter } as never);
@@ -121,6 +115,8 @@ async function main() {
   console.log(`✅ Seeded ${members.length + 3} users`);
 
   // ── 2. MEETINGS ──────────────────────────────────────────
+  // Each completed meeting has a host. Dues are compulsory for all members:
+  // host pays ₦5,000 (MEETING_HOST_FEE), everyone else pays ₦1,000 (MEETING_DUES).
 
   console.log("📅 Seeding meetings...");
 
@@ -132,6 +128,7 @@ async function main() {
       scheduledAt: monthDate(6),
       location: "Town Hall, Mile 1, Port Harcourt",
       agenda: "1. Opening prayer\n2. Roll call\n3. New year address by the President\n4. Review of last year activities\n5. AOB\n6. Closing prayer",
+      hostId: agu.id,
     },
     {
       title: "February Executive Review",
@@ -140,6 +137,7 @@ async function main() {
       scheduledAt: monthDate(5),
       location: "Secretariat Office, Ada George Road",
       agenda: "1. Q1 budget review\n2. Dues collection status\n3. Borehole project update\n4. AOB",
+      hostId: obi.id,
     },
     {
       title: "March General Meeting",
@@ -148,6 +146,7 @@ async function main() {
       scheduledAt: monthDate(4),
       location: "Town Hall, Mile 1, Port Harcourt",
       agenda: "1. Opening prayer\n2. Roll call\n3. Community development levy announcement\n4. Borehole project briefing\n5. AOB",
+      hostId: nnadi.id,
     },
     {
       title: "April Emergency Meeting",
@@ -156,6 +155,7 @@ async function main() {
       scheduledAt: monthDate(3),
       location: "Secretariat Office, Ada George Road",
       notes: "Called to address misconduct report filed against a member.",
+      hostId: okeke.id,
     },
     {
       title: "May General Meeting",
@@ -163,6 +163,7 @@ async function main() {
       status: MeetingStatus.COMPLETED,
       scheduledAt: monthDate(2),
       location: "Town Hall, Mile 1, Port Harcourt",
+      hostId: oeze.id,
     },
     {
       title: "June Executive Session",
@@ -170,6 +171,7 @@ async function main() {
       status: MeetingStatus.COMPLETED,
       scheduledAt: monthDate(1),
       location: "Secretariat Office, Ada George Road",
+      hostId: okonkwo.id,
     },
     {
       title: "July General Meeting",
@@ -178,6 +180,7 @@ async function main() {
       scheduledAt: subWeeks(now, 2),
       location: "Town Hall, Mile 1, Port Harcourt",
       agenda: "1. Opening prayer\n2. Roll call\n3. July dues collection\n4. AGM announcement\n5. AOB\n6. Closing prayer",
+      hostId: ihejirika.id,
     },
     {
       title: "Annual General Meeting 2026",
@@ -225,17 +228,17 @@ async function main() {
   // Adaeze Okafor — PRESENT all 7
   completedMeetings.forEach((m) => attendanceRecords.push(att(admin1.id, m.id, AttendanceStatus.PRESENT)));
 
-  // Emeka Onwudiwe — PRESENT 6, EXCUSED 1 (April emergency)
+  // Emeka Onwudiwe — PRESENT 6, EXCUSED 1 (April)
   completedMeetings.forEach((m) =>
     attendanceRecords.push(att(admin2.id, m.id, m.id === aprMtg.id ? AttendanceStatus.EXCUSED : AttendanceStatus.PRESENT))
   );
 
-  // Chukwuemeka Agu — PRESENT 6, ABSENT 1 (Feb)
+  // Chukwuemeka Agu — PRESENT 6, ABSENT 1 (Feb) | host: Jan
   completedMeetings.forEach((m) =>
     attendanceRecords.push(att(agu.id, m.id, m.id === febMtg.id ? AttendanceStatus.ABSENT : AttendanceStatus.PRESENT))
   );
 
-  // Ngozi Obi — PRESENT 5, EXCUSED 1 (Apr), ABSENT 1 (Jun)
+  // Ngozi Obi — PRESENT 5, EXCUSED 1 (Apr), ABSENT 1 (Jun) | host: Feb
   completedMeetings.forEach((m) => {
     const s = m.id === aprMtg.id ? AttendanceStatus.EXCUSED : m.id === junMtg.id ? AttendanceStatus.ABSENT : AttendanceStatus.PRESENT;
     attendanceRecords.push(att(obi.id, m.id, s));
@@ -247,36 +250,36 @@ async function main() {
     attendanceRecords.push(att(nwosu.id, m.id, absentIds.includes(m.id) ? AttendanceStatus.ABSENT : AttendanceStatus.PRESENT));
   });
 
-  // Chidinma Okeke — PRESENT 5, ABSENT 2 (Mar, Jun)
+  // Chidinma Okeke — PRESENT 5, ABSENT 2 (Mar, Jun) | host: Apr
   completedMeetings.forEach((m) => {
     const absentIds = [marMtg.id, junMtg.id];
     attendanceRecords.push(att(okeke.id, m.id, absentIds.includes(m.id) ? AttendanceStatus.ABSENT : AttendanceStatus.PRESENT));
   });
 
-  // Uche Ihejirika — PRESENT 4, ABSENT 3 (Feb, May, Jun)
+  // Uche Ihejirika — PRESENT 4, ABSENT 3 (Feb, May, Jun) | host: Jul
   completedMeetings.forEach((m) => {
     const absentIds = [febMtg.id, mayMtg.id, junMtg.id];
     attendanceRecords.push(att(ihejirika.id, m.id, absentIds.includes(m.id) ? AttendanceStatus.ABSENT : AttendanceStatus.PRESENT));
   });
 
-  // Adaora Nnadi — last 5 meetings only (joined 12 months ago), PRESENT 4, ABSENT 1 (Jun)
+  // Adaora Nnadi — last 5 meetings only (Mar–Jul), PRESENT 4, ABSENT 1 (Jun) | host: Mar
   const last5 = [marMtg, aprMtg, mayMtg, junMtg, julMtg];
   last5.forEach((m) =>
     attendanceRecords.push(att(nnadi.id, m.id, m.id === junMtg.id ? AttendanceStatus.ABSENT : AttendanceStatus.PRESENT))
   );
 
-  // Chinedu Okonkwo — last 5 meetings only, PRESENT 4, ABSENT 1 (May)
+  // Chinedu Okonkwo — last 5 meetings only, PRESENT 4, ABSENT 1 (May) | host: Jun
   last5.forEach((m) =>
     attendanceRecords.push(att(okonkwo.id, m.id, m.id === mayMtg.id ? AttendanceStatus.ABSENT : AttendanceStatus.PRESENT))
   );
 
-  // Onyekachi Eze — last 5 meetings only, PRESENT 3, ABSENT 2 (Apr, Jul)
+  // Onyekachi Eze — last 5 meetings only, PRESENT 3, ABSENT 2 (Apr, Jul) | host: May
   last5.forEach((m) => {
     const absentIds = [aprMtg.id, julMtg.id];
     attendanceRecords.push(att(oeze.id, m.id, absentIds.includes(m.id) ? AttendanceStatus.ABSENT : AttendanceStatus.PRESENT));
   });
 
-  // Nnamdi Ohaeri — last 4 meetings only (joined 8 months ago), PRESENT 2, ABSENT 2 (May, Jul)
+  // Nnamdi Ohaeri — last 4 meetings only (Apr–Jul), PRESENT 2, ABSENT 2 (May, Jul)
   const last4 = [aprMtg, mayMtg, junMtg, julMtg];
   last4.forEach((m) => {
     const absentIds = [mayMtg.id, julMtg.id];
@@ -293,37 +296,70 @@ async function main() {
 
   console.log("💰 Seeding payments...");
 
-  const monthNames = ["January", "February", "March", "April", "May", "June", "July"];
+  // Build lookup: userId-meetingId → AttendanceStatus
+  const attendanceLookup = new Map<string, AttendanceStatus>();
+  for (const rec of attendanceRecords) {
+    attendanceLookup.set(`${rec.userId}-${rec.meetingId}`, rec.status);
+  }
 
-  const duesMatrix: [typeof agu, (PaymentStatus | null)[]][] = [
-    [admin1,    ["PAID", "PAID", "PAID", "PAID", "PAID", "PAID", "PAID"]],
-    [admin2,    ["PAID", "PAID", "PAID", "PAID", "PAID", "PAID", "PAID"]],
-    [agu,       ["PAID", "PAID", "PAID", "PAID", "PAID", "PAID", "PENDING"]],
-    [obi,       ["PAID", "PAID", "PAID", "PAID", "PAID", "PAID", "PENDING"]],
-    [nwosu,     ["PAID", "PAID", "PAID", "PENDING", "PENDING", "PENDING", "PENDING"]],
-    [okeke,     ["PAID", "PAID", "PAID", "PAID", "PAID", "PENDING", "PENDING"]],
-    [ihejirika, ["PAID", "PAID", "PENDING", "PENDING", "PENDING", "PENDING", "PENDING"]],
-    [nnadi,     ["PAID", "PAID", "PAID", "PAID", "PENDING", "PENDING", "PENDING"]],
-    [okonkwo,   ["PAID", "PAID", "PAID", "PAID", "PAID", "PENDING", "PENDING"]],
-    [oeze,      ["PAID", "PAID", "PAID", "PENDING", "PENDING", "PENDING", "PENDING"]],
-    [ohaeri,    ["PAID", "PENDING", "PENDING", "PENDING", "PENDING", "PENDING", "PENDING"]],
-    [orji,      [null, null, null, null, null, null, "PENDING"]],
-  ];
+  // All members who pay dues (superAdmin is exempt as president)
+  const duesMembers = [admin1, admin2, agu, obi, nwosu, okeke, ihejirika, nnadi, okonkwo, oeze, ohaeri, orji];
 
-  const paymentRecords = [];
+  type PaymentInput = {
+    userId: string;
+    type: PaymentType;
+    status: PaymentStatus;
+    amount: number;
+    description: string;
+    paidAt?: Date | null;
+    dueDate?: Date | null;
+  };
 
-  for (const [member, statuses] of duesMatrix) {
-    for (let i = 0; i < statuses.length; i++) {
-      const status = statuses[i];
-      if (!status) continue;
+  const paymentRecords: PaymentInput[] = [];
+
+  // Host and per-member dues for each completed meeting.
+  // MEETING_HOST_FEE (₦5,000) for the host.
+  // MEETING_DUES (₦1,000) for every other member who had joined by that meeting date —
+  // PAID if they were present, PENDING if absent/excused/not yet tracked.
+  const meetingHosts: Record<string, typeof agu> = {
+    [janMtg.id]: agu,
+    [febMtg.id]: obi,
+    [marMtg.id]: nnadi,
+    [aprMtg.id]: okeke,
+    [mayMtg.id]: oeze,
+    [junMtg.id]: okonkwo,
+    [julMtg.id]: ihejirika,
+  };
+
+  for (const meeting of completedMeetings) {
+    const host = meetingHosts[meeting.id];
+
+    // Host fee — always paid
+    paymentRecords.push({
+      userId: host.id,
+      type: PaymentType.MEETING_HOST_FEE,
+      status: PaymentStatus.PAID,
+      amount: 5000,
+      description: `Meeting dues (host) — ${meeting.title}`,
+      paidAt: meeting.scheduledAt,
+    });
+
+    // Dues for every other member who had joined by this meeting's date
+    for (const member of duesMembers) {
+      if (member.id === host.id) continue;
+      if (member.dateJoined > meeting.scheduledAt) continue; // not yet a member
+
+      const attStatus = attendanceLookup.get(`${member.id}-${meeting.id}`);
+      const paid = attStatus === AttendanceStatus.PRESENT;
+
       paymentRecords.push({
         userId: member.id,
-        type: PaymentType.MONTHLY_DUES,
-        status: status as PaymentStatus,
-        amount: 2000,
-        description: `${monthNames[i]} monthly dues`,
-        dueDate: setDate(subMonths(now, 6 - i), 28),
-        paidAt: status === "PAID" ? setDate(subMonths(now, 6 - i), Math.floor(Math.random() * 15) + 1) : null,
+        type: PaymentType.MEETING_DUES,
+        status: paid ? PaymentStatus.PAID : PaymentStatus.PENDING,
+        amount: 1000,
+        description: `Meeting dues — ${meeting.title}`,
+        paidAt: paid ? meeting.scheduledAt : null,
+        dueDate: paid ? null : meeting.scheduledAt,
       });
     }
   }
@@ -358,8 +394,8 @@ async function main() {
     },
     {
       authorId: admin1.id,
-      title: "January Dues Reminder",
-      body: "This is a reminder that January monthly dues of ₦2,000 are due by the end of the month. Members who have not paid will be liable for a ₦1,500 fine. Please make payment to the Treasurer promptly.",
+      title: "January Meeting Dues Reminder",
+      body: "This is a reminder that January meeting dues are compulsory for all members. The host pays ₦5,000; all other members pay ₦1,000. Members who have not paid will be liable for a fine. Please make payment to the Treasurer promptly.",
       isPinned: false,
       publishedAt: subMonths(now, 6),
     },
@@ -386,8 +422,8 @@ async function main() {
     },
     {
       authorId: admin2.id,
-      title: "July Dues — Payment Deadline",
-      body: "This is a reminder that July monthly dues of ₦2,000 are now due. Members who have not paid by end of month will attract a ₦1,500 fine. Please make payment to the Treasurer and collect your receipt. Thank you.",
+      title: "July Meeting Dues — Payment Deadline",
+      body: "This is a reminder that July meeting dues are now outstanding. The host pays ₦5,000; all other members pay ₦1,000. Members who have not paid by end of month will attract a ₦1,500 fine. Please make payment to the Treasurer and collect your receipt. Thank you.",
       isPinned: false,
       publishedAt: subWeeks(now, 1),
     },

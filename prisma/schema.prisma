@@ -53,7 +53,8 @@ enum AttendanceStatus {
 }
 
 enum PaymentType {
-  MONTHLY_DUES
+  MEETING_HOST_FEE
+  MEETING_DUES
   DEVELOPMENT_LEVY
   EVENT_CONTRIBUTION
   FINE
@@ -98,6 +99,7 @@ model User {
   payments         Payment[]
   announcements    Announcement[]
   announcementRead AnnouncementRead[]
+  hostedMeetings   Meeting[]          @relation("MeetingHost")
 
   // NextAuth relations
   accounts  Account[]
@@ -118,13 +120,16 @@ model Meeting {
   agenda      String?
   minutesUrl  String?
   notes       String?
+  hostId      String?
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 
+  host        User?         @relation("MeetingHost", fields: [hostId], references: [id])
   attendances Attendance[]
 
   @@index([status])
   @@index([scheduledAt])
+  @@index([hostId])
   @@map("meetings")
 }
 
