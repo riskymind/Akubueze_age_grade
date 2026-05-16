@@ -19,8 +19,9 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { currentUser } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
+
+type User = { fullName: string; role: string };
 
 const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -33,11 +34,13 @@ const navItems = [
   { label: "Settings", href: "/settings", icon: Settings },
 ];
 
-const initials = currentUser.fullName
-  .split(" ")
-  .slice(0, 2)
-  .map((n) => n[0].toUpperCase())
-  .join("");
+function getInitials(fullName: string) {
+  return fullName
+    .split(" ")
+    .slice(0, 2)
+    .map((n) => n[0].toUpperCase())
+    .join("");
+}
 
 function NavItems({
   collapsed = false,
@@ -77,7 +80,13 @@ function NavItems({
   );
 }
 
-function UserArea({ collapsed = false }: { collapsed?: boolean }) {
+function UserArea({
+  user,
+  collapsed = false,
+}: {
+  user: User;
+  collapsed?: boolean;
+}) {
   return (
     <div
       className={cn(
@@ -86,18 +95,20 @@ function UserArea({ collapsed = false }: { collapsed?: boolean }) {
       )}
     >
       <Avatar className="size-8 shrink-0">
-        <AvatarFallback className="text-xs font-medium">{initials}</AvatarFallback>
+        <AvatarFallback className="text-xs font-medium">
+          {getInitials(user.fullName)}
+        </AvatarFallback>
       </Avatar>
       {!collapsed && (
         <span className="text-sm font-medium text-sidebar-foreground truncate">
-          {currentUser.fullName}
+          {user.fullName}
         </span>
       )}
     </div>
   );
 }
 
-export function AppSidebar() {
+export function AppSidebar({ user }: { user: User }) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -133,7 +144,7 @@ export function AppSidebar() {
         </div>
 
         <NavItems collapsed={collapsed} />
-        <UserArea collapsed={collapsed} />
+        <UserArea user={user} collapsed={collapsed} />
       </aside>
 
       {/* Mobile: Sheet drawer */}
@@ -160,7 +171,7 @@ export function AppSidebar() {
               <span className="font-semibold text-sidebar-foreground">Akubueze</span>
             </div>
             <NavItems onNavClick={() => setMobileOpen(false)} />
-            <UserArea />
+            <UserArea user={user} />
           </div>
         </SheetContent>
       </Sheet>

@@ -1,13 +1,16 @@
 import { AppSidebar } from "@/components/layout/AppSidebar";
+import { getCurrentUser } from "@/lib/dashboard-data";
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const user = await getCurrentUser();
+
   return (
     <div className="flex h-screen overflow-hidden bg-background">
-      <AppSidebar />
+      <AppSidebar user={user} />
       <main className="flex-1 overflow-y-auto">{children}</main>
     </div>
   );
