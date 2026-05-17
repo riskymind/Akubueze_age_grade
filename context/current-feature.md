@@ -1,16 +1,36 @@
-# Current Feature
+# Current Feature: Reports UI — Real Data Integration
 
 ## Status
 
-Not Started
+In Progress
 
 ## Goals
 
-<!-- Add goals here -->
+- Build the Reports main content area with real database data
+- Implement a Welcome Header ("Reports" + subtitle "Comprehensive analytics and reporting") with an Export Report button placeholder (top right)
+- Implement a filter bar with two dropdowns:
+  - "Report Type": Overview (default) — potentially expandable to other report types
+  - "Timeframe": This Month, Last Month, This Year, All Time (via URL params)
+- Implement 4 Statistics Cards:
+  - Total Members (count of all active members) + delta vs. last period
+  - Average Attendance (%) + delta vs. last period
+  - Total Dues Collected (sum of PAID payments) + delta vs. last period
+  - Outstanding Dues (sum of PENDING payments) + delta vs. last period
+- Implement a "Membership Trends" report section (table):
+  - Columns: Month, New Members, Active, Inactive, Suspended
+  - Rows for each month within the selected timeframe
+- All data fetched server-side (server components, no client fetching)
+- Role-aware: admins/super admins see full association data; members see a restricted view (TBD, likely same data)
+- Handle empty states for all sections
 
 ## Notes
 
-<!-- Add notes here -->
+- Spec defined in `context/features/reports-ui-spec.md`
+- Reference screenshot: `context/screenshots/reports.png`
+- Export Report button is a placeholder (no action needed)
+- Delta badges: green for positive trends, red for negative (e.g., "+5 this month", "-₦45,000 from last month")
+- Timeframe filter controls date range for stats cards and membership trends table
+- Default timeframe: "This Month"
 
 ## History
 
