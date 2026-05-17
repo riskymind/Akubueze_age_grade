@@ -1,10 +1,30 @@
 # Current Feature
 
+## Status
+
+Not Started
+
+## Goals
+
+<!-- Add goals here -->
+
+## Notes
+
+<!-- Add notes here -->
+
+## History
+
+<!-- Keep this updated. Earliest to latest -->
+
+---
+
+# Previous Feature
+
 Payments UI — Real Data Integration
 
 ## Status
 
-In Progress
+Completed
 
 ## Goals
 
