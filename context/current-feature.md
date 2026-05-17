@@ -1,10 +1,30 @@
 # Current Feature
 
+## Status
+
+Not Started
+
+## Goals
+
+<!-- Add goals here -->
+
+## Notes
+
+<!-- Add notes here -->
+
+## History
+
+<!-- Keep this updated. Earliest to latest -->
+
+---
+
+# Previous Feature
+
 Attendance UI — Real Data Integration
 
 ## Status
 
-In Progress
+Completed
 
 ## Goals
 
@@ -33,7 +53,7 @@ In Progress
 
 ## History
 
-<!-- Keep this updated. Earliest to latest -->
+- **2026-05-17** — Attendance UI real data: Created `lib/attendance-data.ts` with Prisma queries for attendance list (role-scoped: admins see all, members see own) and meeting options for the filter dropdown. Added `app/attendance/layout.tsx` and `page.tsx` with server-side data fetching. Built `AttendanceFilterBar` client component with 300ms debounced search (member name or meeting title) and URL-param-based meeting and status filtering. Desktop table with Member, Meeting, Date, Status columns; mobile card layout. Status badges (Present/Absent/Excused).
 
 ---
 
