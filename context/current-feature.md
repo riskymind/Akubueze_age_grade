@@ -1,10 +1,30 @@
 # Current Feature
 
+## Status
+
+Not Started
+
+## Goals
+
+<!-- Add goals here -->
+
+## Notes
+
+<!-- Add notes here -->
+
+## History
+
+<!-- Keep this updated. Earliest to latest -->
+
+---
+
+# Previous Feature
+
 Members UI — Real Data Integration
 
 ## Status
 
-In Progress
+Completed
 
 ## Goals
 
@@ -25,7 +45,7 @@ In Progress
 
 ## History
 
-<!-- Keep this updated. Earliest to latest -->
+- **2026-05-17** — Members UI real data: Created `lib/members-data.ts` with Prisma query supporting name/phone search and status filter. Added `app/members/layout.tsx` and `page.tsx` with server-side data fetching. Built `MembersSearchBar` client component with 300ms debounce and URL-param-based filtering. Mobile card layout below md breakpoint; full table on md+. Role-aware actions: edit/suspend for admins only.
 
 ---
 
