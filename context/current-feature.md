@@ -1,16 +1,32 @@
 # Current Feature
 
+Announcements UI — Real Data Integration
+
 ## Status
 
-Not Started
+In Progress
 
 ## Goals
 
-<!-- Add goals here -->
+- Build the Announcements main content area with real database data
+- Implement a Welcome Header ("Announcements" + subtitle "Stay updated with important association news")
+- Implement a search bar (search by announcement title/body) with an "All Categories" filter dropdown
+- Display a "Pinned Announcements" section for announcements where `isPinned = true`
+- Display an "Other Announcements" section for non-pinned announcements
+- Each announcement card shows: title, category badge, body text, author name, posted date, and an "×" dismiss/read button
+- Role-aware: admins/super admins can post announcements; all roles can view
+- Handle empty states (no pinned, no other announcements)
+- Data must be fetched server-side (server components, no client fetching)
 
 ## Notes
 
-<!-- Add notes here -->
+- Spec defined in `context/features/annoucement-ui-spec.md`
+- Reference screenshot: `context/screenshots/announcement.png`
+- Pinned announcements appear in their own section above regular announcements
+- Category badge colours: "General" (default), "Important" (amber/orange), "Event" (blue/purple) — derive from title keywords or add a category field if needed; check existing Announcement model first
+- The `×` button marks an announcement as read (uses `AnnouncementRead` model) — already implemented on dashboard, reuse that pattern
+- Search/filter is client-side (URL params like other pages) with debounce
+- "All Categories" dropdown: if no category field exists on the model, filter by isPinned or skip for now and note it
 
 ## History
 
