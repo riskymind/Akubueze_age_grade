@@ -1,16 +1,27 @@
-# Current Feature
+# Current Feature: Meetings UI — Real Data Integration
 
 ## Status
 
-Not Started
+In Progress
 
 ## Goals
 
-<!-- Add goals here -->
+- Build the Meetings main content area with real database data
+- Implement a Welcome Header ("Meetings" + subtitle "Manage association meetings")
+- Implement a List View / Calendar View toggle (implement List View; Calendar View placeholder)
+- Display meetings list with real-time data from the database, showing: title, scheduled date/time, location, meeting type badge, status badge
+- Role-aware actions: admins/super admins see Edit and Cancel buttons; all users see View Details
+- Handle empty states for the meetings list
+- Support filtering by status and type via URL params (stretch: search by title)
 
 ## Notes
 
-<!-- Add notes here -->
+- Spec defined in `context/features/meeting-ui-spec.md`
+- Reference screenshot: `context/screenshots/meetings.png`
+- Data must be fetched server-side (server components, no client fetching)
+- Role check: `SUPER_ADMIN` and `ADMIN` see Edit/Cancel actions; `MEMBER` gets View Details only
+- Meeting type badge values: `GENERAL`, `EXECUTIVE`, `EMERGENCY`, `ANNUAL`
+- Meeting status badge values: `SCHEDULED`, `IN_PROGRESS`, `COMPLETED`, `CANCELLED`
 
 ## History
 
