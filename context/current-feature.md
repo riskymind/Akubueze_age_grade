@@ -1,20 +1,38 @@
 # Current Feature
 
+Payments UI — Real Data Integration
+
 ## Status
 
-Not Started
+In Progress
 
 ## Goals
 
-<!-- Add goals here -->
+- Build the Payments main content area with real database data
+- Implement a Welcome Header ("Payments" + subtitle "Manage member payments and dues")
+- Implement Statistics Cards:
+  - Total Collected (sum of all PAID payments)
+  - Outstanding Dues (sum of all PENDING payments)
+  - Fines This Month (sum of PAID/PENDING FINE payments this month)
+- Implement a filter bar: "All Payments" dropdown to filter by payment type
+- Display a payments table with columns: Member Name, Payment Type, Amount, Status, Date, Receipt
+- Role-aware data: admins/super admins see all members' payments; members see only their own
+- Handle empty states for the payments table
+- Data must be fetched server-side (server components, no client fetching)
 
 ## Notes
 
-<!-- Add notes here -->
+- Spec defined in `context/features/payment-ui-spec.md`
+- Reference screenshot: `context/screenshots/payments.png`
+- Role check: `SUPER_ADMIN` and `ADMIN` see all members' payments; `MEMBER` sees personal payments only
+- Stats cards: Total Collected = sum of PAID amounts; Outstanding Dues = sum of PENDING amounts; Fines This Month = FINE type payments this calendar month
+- Filter by PaymentType via URL params (same pattern as meetings/members)
+- Receipt column: show icon/link if `receiptUrl` is set, dash otherwise
+- Amount formatted as ₦X,XXX
 
 ## History
 
-<!-- Keep this updated. Earliest to latest -->
+- **2026-05-17** — Payments UI real data: Created `lib/payments-data.ts` with Prisma queries for payments list (role-scoped: admins see all, members see own) and payment stats (Total Collected, Outstanding Dues, Fines This Month). Added `app/payments/layout.tsx` and `page.tsx` with server-side data fetching. Built `PaymentsFilterBar` client component with URL-param-based PaymentType filtering. Desktop table with Member Name, Payment Type, Amount, Status, Date, Receipt columns; mobile card layout. Status badges (Paid/Pending/Waived). Amount formatted as ₦X,XXX.
 
 ---
 
