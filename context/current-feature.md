@@ -1,8 +1,30 @@
-# Current Feature: Meetings UI — Real Data Integration
+# Current Feature
 
 ## Status
 
-In Progress
+Not Started
+
+## Goals
+
+<!-- Add goals here -->
+
+## Notes
+
+<!-- Add notes here -->
+
+## History
+
+<!-- Keep this updated. Earliest to latest -->
+
+---
+
+# Previous Feature
+
+Meetings UI — Real Data Integration
+
+## Status
+
+Completed
 
 ## Goals
 
@@ -12,7 +34,7 @@ In Progress
 - Display meetings list with real-time data from the database, showing: title, scheduled date/time, location, meeting type badge, status badge
 - Role-aware actions: admins/super admins see Edit and Cancel buttons; all users see View Details
 - Handle empty states for the meetings list
-- Support filtering by status and type via URL params (stretch: search by title)
+- Support filtering by status and type via URL params
 
 ## Notes
 
@@ -20,12 +42,10 @@ In Progress
 - Reference screenshot: `context/screenshots/meetings.png`
 - Data must be fetched server-side (server components, no client fetching)
 - Role check: `SUPER_ADMIN` and `ADMIN` see Edit/Cancel actions; `MEMBER` gets View Details only
-- Meeting type badge values: `GENERAL`, `EXECUTIVE`, `EMERGENCY`, `ANNUAL`
-- Meeting status badge values: `SCHEDULED`, `IN_PROGRESS`, `COMPLETED`, `CANCELLED`
 
 ## History
 
-<!-- Keep this updated. Earliest to latest -->
+- **2026-05-17** — Meetings UI real data: Created `lib/meetings-data.ts` with Prisma query supporting type and status filters. Added `app/meetings/layout.tsx` and `page.tsx` with server-side data fetching. Built `MeetingsFilterBar` client component with List/Calendar view toggle and URL-param-based type/status filtering. Colour-coded type badges (General/Executive/Emergency/Annual) and status badges. Role-aware actions: Edit/Cancel for admins on non-completed/cancelled meetings; View Details for all.
 
 ---
 
