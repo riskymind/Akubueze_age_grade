@@ -1,16 +1,35 @@
 # Current Feature
 
+Attendance UI — Real Data Integration
+
 ## Status
 
-Not Started
+In Progress
 
 ## Goals
 
-<!-- Add goals here -->
+- Build the Attendance main content area with real database data
+- Implement a Welcome Header ("Attendance" + subtitle "Track member attendance across meetings") with an Export button placeholder
+- Implement a search and filter bar:
+  - Search input: search by member name or meeting title (300ms debounce)
+  - "All Meetings" dropdown: filter by specific meeting
+  - "All Status" dropdown: filter by attendance status (Present / Absent / Excused)
+- Display an attendance table with columns: Member, Meeting, Date, Status
+- Status badges: Present (green), Absent (red), Excused (amber)
+- Role-aware data: admins/super admins see all members' attendance; members see only their own
+- Handle empty states for the attendance table
+- Data must be fetched server-side (server components, no client fetching)
 
 ## Notes
 
-<!-- Add notes here -->
+- Spec defined in `context/features/attendance-ui-spec.md`
+- Reference screenshot: `context/screenshots/attendance.png`
+- Role check: `SUPER_ADMIN` and `ADMIN` see all attendance records; `MEMBER` sees personal records only
+- Meeting dropdown is populated from the meetings list (id + title)
+- Search filters on both member name and meeting title simultaneously
+- Date column shows meeting scheduled date (not attendance marked date)
+- Mobile: card list layout (Member + Meeting + Date + Status badge)
+- Export button is a placeholder (no action needed)
 
 ## History
 
