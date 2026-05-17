@@ -20,3 +20,11 @@ Read the following to get the full context of the project:
 - **Lint**: `npm run lint`
 - **Test**: `npm run test` (single run)
 - **Test watch**: `npm run test:watch`
+
+## Neon MCP
+
+- Always use the **`akubueze`** Neon project.
+- Always use the **`development`** branch unless I explicitly say "production" or name a different branch.
+- **Never read from or write to the production branch without my explicit instruction.**
+- If a Neon operation does not specify a branch, default to `development` — do not ask, just use it.
+- If I ask for something that would affect production, confirm with me before proceeding.
