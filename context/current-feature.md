@@ -1,5 +1,36 @@
 # Current Feature
 
+Members UI — Real Data Integration
+
+## Status
+
+In Progress
+
+## Goals
+
+- Build the Members main content area with real database data
+- Implement a Welcome Header for the members page
+- Implement Search and Filter members functionality with 300ms debounce
+- Display members list with real-time data from the database
+- Role-aware visibility: admins/super admins can see and manage all members; members see limited info
+- Handle empty states for the members list
+
+## Notes
+
+- Spec defined in `context/features/members-ui-spec.md`
+- Reference screenshot: `context/screenshots/members.png`
+- Data must be fetched server-side (server components, no client fetching)
+- Search uses 300ms debounce
+- Role check: `SUPER_ADMIN` and `ADMIN` see all members and management actions; `MEMBER` has read-only access
+
+## History
+
+<!-- Keep this updated. Earliest to latest -->
+
+---
+
+# Previous Feature
+
 Dashboard Main UI — Real Data Integration
 
 ## Status
