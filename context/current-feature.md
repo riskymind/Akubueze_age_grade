@@ -1,20 +1,39 @@
 # Current Feature
 
+## Status
+
+Not Started
+
+## Goals
+
+<!-- Add goals here -->
+
+## Notes
+
+<!-- Add notes here -->
+
+## History
+
+<!-- Keep this updated. Earliest to latest -->
+
+---
+
+# Previous Feature
+
 Announcements UI — Real Data Integration
 
 ## Status
 
-In Progress
+Completed
 
 ## Goals
 
 - Build the Announcements main content area with real database data
 - Implement a Welcome Header ("Announcements" + subtitle "Stay updated with important association news")
-- Implement a search bar (search by announcement title/body) with an "All Categories" filter dropdown
+- Implement a search bar (search by announcement title/body) with a filter dropdown
 - Display a "Pinned Announcements" section for announcements where `isPinned = true`
 - Display an "Other Announcements" section for non-pinned announcements
-- Each announcement card shows: title, category badge, body text, author name, posted date, and an "×" dismiss/read button
-- Role-aware: admins/super admins can post announcements; all roles can view
+- Each announcement card shows: title, body text, author name, posted date, and an "×" dismiss/read button
 - Handle empty states (no pinned, no other announcements)
 - Data must be fetched server-side (server components, no client fetching)
 
@@ -22,15 +41,12 @@ In Progress
 
 - Spec defined in `context/features/annoucement-ui-spec.md`
 - Reference screenshot: `context/screenshots/announcement.png`
-- Pinned announcements appear in their own section above regular announcements
-- Category badge colours: "General" (default), "Important" (amber/orange), "Event" (blue/purple) — derive from title keywords or add a category field if needed; check existing Announcement model first
-- The `×` button marks an announcement as read (uses `AnnouncementRead` model) — already implemented on dashboard, reuse that pattern
-- Search/filter is client-side (URL params like other pages) with debounce
-- "All Categories" dropdown: if no category field exists on the model, filter by isPinned or skip for now and note it
+- No `category` field exists on the Announcement model; the filter dropdown uses "All Announcements / Pinned Only" instead of categories
+- The `×` button marks an announcement as read via `markAnnouncementRead` server action (upsert into `AnnouncementRead`)
 
 ## History
 
-<!-- Keep this updated. Earliest to latest -->
+- **2026-05-17** — Announcements UI real data: Created `lib/announcements-data.ts` with Prisma query supporting title/body search and pinned filter, with per-user `isRead` status via `AnnouncementRead`. Created `actions/announcements.ts` server action to mark announcements as read. Added `app/announcements/layout.tsx` and `page.tsx` with server-side data fetching; page splits results into Pinned and Other sections. Built `AnnouncementsFilterBar` client component with 300ms debounced search and "All Announcements / Pinned Only" URL-param filter. `AnnouncementCard` client component handles optimistic read state and × dismiss button.
 
 ---
 
