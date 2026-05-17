@@ -1,8 +1,30 @@
-# Current Feature: Reports UI — Real Data Integration
+# Current Feature
 
 ## Status
 
-In Progress
+Not Started
+
+## Goals
+
+<!-- Add goals here -->
+
+## Notes
+
+<!-- Add notes here -->
+
+## History
+
+<!-- Keep this updated. Earliest to latest -->
+
+---
+
+# Previous Feature
+
+Reports UI — Real Data Integration
+
+## Status
+
+Completed
 
 ## Goals
 
@@ -20,7 +42,6 @@ In Progress
   - Columns: Month, New Members, Active, Inactive, Suspended
   - Rows for each month within the selected timeframe
 - All data fetched server-side (server components, no client fetching)
-- Role-aware: admins/super admins see full association data; members see a restricted view (TBD, likely same data)
 - Handle empty states for all sections
 
 ## Notes
@@ -28,13 +49,13 @@ In Progress
 - Spec defined in `context/features/reports-ui-spec.md`
 - Reference screenshot: `context/screenshots/reports.png`
 - Export Report button is a placeholder (no action needed)
-- Delta badges: green for positive trends, red for negative (e.g., "+5 this month", "-₦45,000 from last month")
-- Timeframe filter controls date range for stats cards and membership trends table
+- Delta badges: green for positive trends, red for negative; hidden entirely for "All Time" timeframe
+- Timeframe filter controls date range for stats cards; membership trends table always shows year-to-date months
 - Default timeframe: "This Month"
 
 ## History
 
-<!-- Keep this updated. Earliest to latest -->
+- **2026-05-17** — Reports UI real data: Created `lib/reports-data.ts` with Prisma queries for report stats (Total Members, Average Attendance, Total Dues Collected, Outstanding Dues — each with delta vs. the previous equivalent period) and `getMembershipTrends()` (year-to-date monthly breakdown of New Members, Active, Inactive, Suspended). Added `app/reports/layout.tsx` and `page.tsx` with server-side data fetching and 4 stats cards with color-coded delta badges. Built `ReportsFilterBar` client component with "Report Type" and "Timeframe" selects (URL param–based). Membership Trends table with colored badge counts per status.
 
 ---
 
