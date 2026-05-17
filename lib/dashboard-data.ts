@@ -1,5 +1,11 @@
 import { cache } from "react";
-import { formatDistanceToNow, startOfMonth, endOfMonth } from "date-fns";
+import {
+  formatDistanceToNow,
+  startOfMonth,
+  endOfMonth,
+  startOfYear,
+  endOfYear,
+} from "date-fns";
 import prisma from "@/lib/prisma";
 
 const PAYMENT_TYPE_LABELS: Record<string, string> = {
@@ -108,6 +114,94 @@ export async function getAnnouncements(userId: string) {
     isRead: reads.length > 0,
     timeAgo: formatDistanceToNow(rest.publishedAt, { addSuffix: true }),
   }));
+}
+
+export async function getMemberDashboardData(userId: string) {
+  const now = new Date();
+  const yearStart = startOfYear(now);
+  const yearEnd = endOfYear(now);
+
+  const [
+    nextMeeting,
+    outstandingBalance,
+    totalAttendance,
+    presentAttendance,
+    recentPayments,
+    pendingCount,
+    totalPaidThisYear,
+    memberProfile,
+  ] = await Promise.all([
+    prisma.meeting.findFirst({
+      where: { status: "SCHEDULED", scheduledAt: { gte: now } },
+      orderBy: { scheduledAt: "asc" },
+      select: {
+        id: true,
+        title: true,
+        type: true,
+        scheduledAt: true,
+        location: true,
+      },
+    }),
+
+    prisma.payment.aggregate({
+      where: { userId, status: "PENDING" },
+      _sum: { amount: true },
+    }),
+
+    prisma.attendance.count({
+      where: { userId, meeting: { status: "COMPLETED" } },
+    }),
+
+    prisma.attendance.count({
+      where: { userId, status: "PRESENT", meeting: { status: "COMPLETED" } },
+    }),
+
+    prisma.payment.findMany({
+      where: { userId },
+      orderBy: { createdAt: "desc" },
+      take: 5,
+      select: {
+        id: true,
+        type: true,
+        amount: true,
+        status: true,
+        paidAt: true,
+        createdAt: true,
+      },
+    }),
+
+    prisma.payment.count({
+      where: { userId, status: "PENDING" },
+    }),
+
+    prisma.payment.aggregate({
+      where: {
+        userId,
+        status: "PAID",
+        paidAt: { gte: yearStart, lte: yearEnd },
+      },
+      _sum: { amount: true },
+    }),
+
+    prisma.user.findUniqueOrThrow({
+      where: { id: userId },
+      select: { dateJoined: true, status: true },
+    }),
+  ]);
+
+  return {
+    nextMeeting,
+    outstandingBalance: outstandingBalance._sum.amount ?? 0,
+    attendanceRate:
+      totalAttendance > 0
+        ? Math.round((presentAttendance / totalAttendance) * 100)
+        : 0,
+    recentPayments,
+    duesStatus: pendingCount > 0 ? "Outstanding" : "Paid to Date",
+    totalPaidThisYear: totalPaidThisYear._sum.amount ?? 0,
+    memberSince: memberProfile.dateJoined,
+    memberStatus: memberProfile.status,
+  };
 }
 
 export async function getRecentActivity() {

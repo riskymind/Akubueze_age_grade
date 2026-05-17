@@ -1,16 +1,38 @@
 # Current Feature
 
+Member Dashboard UI — Member-Specific View
+
 ## Status
 
-Not Started
+In Progress
 
 ## Goals
 
-<!-- Add goals here -->
+- Replace the current unified dashboard with a role-aware layout: admin view (existing) vs member view (new)
+- Member view title: "My Dashboard" with subtitle "Welcome back, [Full Name]"
+- Implement 3 statistics cards for members:
+  - Next Meeting — date of the next scheduled meeting
+  - My Attendance Rate — member's personal attendance rate (%)
+  - My Outstanding Balance — sum of member's PENDING payments (₦)
+- Implement a "Next Meeting" detail card: title, scheduled date/time, location, attendance reminder note
+- Implement a "Your Profile" card alongside Next Meeting: Member Since, Member Status (badge), Dues Status (Paid to Date / Outstanding), Total Paid This Year
+- Implement a "My Recent Payments" table: Payment Type, Amount, Date, Status — show last 5 payments for the logged-in member
+- Implement an "Association Announcements" section (reuse existing announcements data)
+- All data must be fetched server-side (server components, no client fetching)
+- Empty states for all sections
 
 ## Notes
 
-<!-- Add notes here -->
+- Spec defined in `context/features/member-dashboard-ui-spec.md`
+- Reference screenshot: `context/screenshots/member-dashboard.png`
+- Role check: if `MEMBER` → render new member dashboard; if `ADMIN`/`SUPER_ADMIN` → render existing admin dashboard (no change to admin view)
+- Outstanding Balance = sum of PENDING payment amounts for the member
+- Dues Status: "Paid to Date" if no PENDING payments; "Outstanding" if any PENDING payments exist
+- Total Paid This Year = sum of PAID payments for the member in the current calendar year
+- Attendance Rate = (present count / total meetings with records) * 100, rounded to nearest integer
+- Next Meeting = next SCHEDULED meeting by scheduledAt date
+- My Recent Payments = last 5 payments ordered by createdAt desc for the logged-in member
+- Announcements = reuse existing `getAnnouncements()` from `lib/dashboard-data.ts`
 
 ## History
 
