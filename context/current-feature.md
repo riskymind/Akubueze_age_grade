@@ -16,6 +16,8 @@ Not Started
 
 <!-- Keep this updated. Earliest to latest -->
 
+- **2026-05-19** — Authentication: Installed next-auth@beta and resend. Added `resetToken`/`resetTokenExpiry` to User schema (migration applied directly to dev branch via Neon MCP). Created `lib/auth.config.ts` (edge-safe JWT config), `lib/auth.ts` (Credentials provider with bcrypt + suspended/inactive checks), `lib/auth.utils.ts` (`getCurrentUser`, `requireRole`, `canManage`), `lib/auth.actions.ts` (logout, changePassword, triggerPasswordReset, consumeResetToken, createMemberAccount), `lib/password-schema.ts`. Auth pages at `app/(auth)/login/`, `app/auth/reset-password/`, `app/auth/set-password/`, `app/auth/suspended/`, `app/auth/inactive/`. Route protection via `proxy.ts` (Next.js 16 convention). `getCurrentUser()` in `dashboard-data.ts` replaced with real session. `SessionProvider` added to root layout. `types/next-auth.d.ts` extends session with `id`, `role`, `status`, `mustResetPassword`.
+
 ---
 
 # Previous Feature
