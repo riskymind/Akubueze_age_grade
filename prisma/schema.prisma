@@ -87,6 +87,8 @@ model User {
   mustResetPassword Boolean      @default(true)
   profileImageUrl   String?
   dateJoined        DateTime     @default(now())
+  resetToken        String?      @unique
+  resetTokenExpiry  DateTime?
   createdAt         DateTime     @default(now())
   updatedAt         DateTime     @updatedAt
 

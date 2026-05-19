@@ -7,6 +7,8 @@ import {
   endOfYear,
 } from "date-fns";
 import prisma from "@/lib/prisma";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 const PAYMENT_TYPE_LABELS: Record<string, string> = {
   MEETING_HOST_FEE: "Meeting Host Fee",
@@ -17,12 +19,16 @@ const PAYMENT_TYPE_LABELS: Record<string, string> = {
   DONATION: "Donation",
 };
 
-// Temporary until NextAuth is integrated — returns first SUPER_ADMIN from DB
 export const getCurrentUser = cache(async () => {
-  return prisma.user.findFirstOrThrow({
-    where: { role: "SUPER_ADMIN" },
-    select: { id: true, fullName: true, role: true },
-  });
+  const session = await auth();
+  if (!session?.user) redirect("/login");
+  return {
+    id: session.user.id,
+    fullName: session.user.name ?? "",
+    role: session.user.role,
+    status: session.user.status,
+    mustResetPassword: session.user.mustResetPassword,
+  };
 });
 
 export async function getDashboardStats(userId: string, isAdmin: boolean) {
