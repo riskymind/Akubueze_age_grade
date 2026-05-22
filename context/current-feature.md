@@ -1,38 +1,18 @@
-# Current Feature: Members Page (`/admin/members`)
+# Current Feature
 
 ## Status
 
-In Progress
+Not Started
 
 ## Goals
 
-- Build the Members list page at `/admin/members` with search, filters, stat cards, paginated data table, and Add Member sheet
-- Build the Member detail page at `/admin/members/[id]` with profile header, stat cards, attendance history, and payment history
-- Implement Add Member sheet — form with Full Name, Email, Phone, Role (SUPER_ADMIN only), Gender, Occupation, Address; sends credentials email via Resend
-- Implement Edit Member sheet — pre-filled form for editing profile fields; Role field visible to SUPER_ADMIN only
-- Implement Suspend / Reactivate dialog — confirms before calling `suspendMember` or `reactivateMember`
-- Implement Reset Password button — triggers `triggerPasswordReset` after confirmation dialog
-- Data layer: `lib/members/members.queries.ts` (paginated list + member detail + stats), `lib/members/members.actions.ts` (createMember, updateMember, suspendMember, reactivateMember), `lib/members/members.schemas.ts` (Zod schemas)
-- Role-aware access: both routes require ADMIN or SUPER_ADMIN; actions use `canManage(actorRole, targetRole)` to enforce per-action permissions
-- Loading skeletons for both list and detail pages
-- All mutations `revalidatePath`; success/error feedback via Sonner toasts
-
 ## Notes
-
-- Spec defined in `context/features/members-page-spec.md`
-- Routes: `/admin/members` (list) and `/admin/members/[id]` (detail) — both admin-only, enforced via `requireRole`
-- Table uses `@tanstack/react-table` with ShadCN Table primitives; row click → detail page, `···` dropdown for actions
-- Filters: search (300ms debounce), Status, Role, Gender — all URL-param-based; pagination resets to page 1 on filter change
-- Stat cards on list page: Total, Active (green), Suspended (red), Inactive (gray)
-- Member detail stat cards: Attendance Rate, Meetings Attended, Dues Paid (green), Dues Pending (red if > 0)
-- `MemberPaymentsCard` has two tabs: General Payments (`Payment` model) and Meeting Payments (`MeetingPayment` model)
-- `getMemberStats` queries use `MEETING_DUES`/`MEETING_HOST_FEE` — NOT `MONTHLY_DUES` (that enum was removed)
-- Resend email failure on `createMember` should NOT fail the creation — show a warning toast instead
-- Dependencies needed: `@tanstack/react-table`, `react-hook-form`, `@hookform/resolvers`, `sonner`; ShadCN components: `sheet`, `alert-dialog`, `badge`, `avatar`, `table`, `tabs`, `card`, `skeleton`, `select`, `textarea`
 
 ## History
 
 <!-- Keep this updated. Earliest to latest -->
+
+- **2026-05-22** — Members Page (`/admin/members`): Built `/admin/members` list page with 4 stat cards (Total/Active/Suspended/Inactive), search/filter bar (debounced search, Status/Role/Gender selects, URL-param-based), paginated TanStack Table with avatar+name, role/status badges, and row actions dropdown. Built `/admin/members/[id]` detail page with profile header, 4 stat cards (Attendance Rate, Meetings Attended, Dues Paid/Pending), Attendance History card, and Payment History card with Meeting Dues / Other tabs. Full CRUD via server actions: `createMember` (with Resend credentials email), `updateMember`, `suspendMember`/`reactivateMember`, `triggerPasswordReset`. Add/Edit Member sheets use react-hook-form + Zod v4. Suspend/Reset dialogs use AlertDialog (controlled state). Extracted `canManage`/`ROLE_RANK` to `lib/permissions.ts` to keep role logic importable by client components. Added Sonner `<Toaster>` to root layout.
 
 - **2026-05-22** — Auth UI — Sign In, Register & Sign Out: Installed ShadCN `dropdown-menu` component (Base UI-backed). Updated `UserArea` in `AppSidebar` to use `DropdownMenu` — the avatar + name button opens a popup with a "Profile" item (navigates to `/profile` via `useRouter`) and a destructive "Sign out" item (calls `logout` server action). Initials generation (`getInitials`) was already in place.
 
