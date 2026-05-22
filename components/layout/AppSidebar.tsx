@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   Users,
@@ -15,11 +15,21 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
   Menu,
+  LogOut,
+  UserCircle,
 } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import { logout } from "@/lib/auth.actions";
 
 type User = { fullName: string; role: string };
 
@@ -87,6 +97,8 @@ function UserArea({
   user: User;
   collapsed?: boolean;
 }) {
+  const router = useRouter();
+
   return (
     <div
       className={cn(
@@ -94,16 +106,34 @@ function UserArea({
         collapsed && "justify-center"
       )}
     >
-      <Avatar className="size-8 shrink-0">
-        <AvatarFallback className="text-xs font-medium">
-          {getInitials(user.fullName)}
-        </AvatarFallback>
-      </Avatar>
-      {!collapsed && (
-        <span className="text-sm font-medium text-sidebar-foreground truncate">
-          {user.fullName}
-        </span>
-      )}
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          className="flex items-center gap-3 min-w-0 rounded-md p-1 -m-1 hover:bg-sidebar-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring"
+          aria-label="User menu"
+        >
+          <Avatar className="size-8 shrink-0">
+            <AvatarFallback className="text-xs font-medium">
+              {getInitials(user.fullName)}
+            </AvatarFallback>
+          </Avatar>
+          {!collapsed && (
+            <span className="text-sm font-medium text-sidebar-foreground truncate">
+              {user.fullName}
+            </span>
+          )}
+        </DropdownMenuTrigger>
+        <DropdownMenuContent side="top" align="start" className="w-48">
+          <DropdownMenuItem onClick={() => router.push("/profile")}>
+            <UserCircle className="size-4" />
+            Profile
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem variant="destructive" onClick={() => logout()}>
+            <LogOut className="size-4" />
+            Sign out
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 }
