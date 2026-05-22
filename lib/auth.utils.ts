@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { Role } from "@/lib/generated/prisma/enums";
 import { redirect } from "next/navigation";
+export { ROLE_RANK, canManage } from "@/lib/permissions";
 
 export async function getCurrentUser() {
   const session = await auth();
@@ -13,12 +14,3 @@ export async function requireRole(...roles: Role[]) {
   if (!roles.includes(user.role)) redirect("/unauthorized");
   return user;
 }
-
-export const ROLE_RANK: Record<Role, number> = {
-  MEMBER: 1,
-  ADMIN: 2,
-  SUPER_ADMIN: 3,
-};
-
-export const canManage = (actor: Role, target: Role) =>
-  ROLE_RANK[actor] > ROLE_RANK[target];
