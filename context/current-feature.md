@@ -1,12 +1,36 @@
-# Current Feature
+# Current Feature: Meeting Management — CRUD & Detail
 
 ## Status
 
-Not Started
+In Progress
 
 ## Goals
 
+- Build `/admin/meetings` list page (admin-only) with 4 stat cards: Total Meetings, Scheduled, Completed, Cancelled
+- Implement a search/filter bar with debounced search (meeting title), Status filter, and Type filter (URL-param-based)
+- Implement a paginated TanStack Table with columns: Title, Type, Status, Scheduled Date, Location, Host
+- Implement row actions dropdown: View Details, Edit (admin), Cancel (admin)
+- Build `/meetings/[id]` meeting detail page showing: header (title, type, status, date, location), agenda, notes, host
+- Detail page: Attendance section — table of members with their attendance status (Present/Absent/Excused) and remarks
+- Detail page: Meeting Minutes section — show minutes link/PDF viewer if `minutesUrl` set, placeholder if not
+- Implement Add Meeting sheet (admin): form fields — title, type, scheduledAt (date + time picker), location, agenda, hostId (member select), notes
+- Implement Edit Meeting sheet (admin): pre-fills existing data, same fields as Add
+- Implement Cancel Meeting dialog (admin): AlertDialog confirmation before setting status to CANCELLED
+- Implement Mark Attendance action (admin): on detail page, ability to mark Present/Absent/Excused per member per meeting
+- All forms use react-hook-form + Zod v4 validation
+- Server actions: `createMeeting`, `updateMeeting`, `cancelMeeting`, `markAttendance` (bulk or per-member)
+- Success/error feedback via Sonner toasts
+- Role-aware: ADMIN/SUPER_ADMIN can create/edit/cancel/mark attendance; MEMBER gets read-only view
+
 ## Notes
+
+- Spec defined in `context/features/meeting-spec.md`
+- Follow the same patterns as `/admin/members` (TanStack Table, row actions dropdown, sheet modals, AlertDialog)
+- Meeting status lifecycle: `SCHEDULED → IN_PROGRESS → COMPLETED → CANCELLED`
+- Meeting types: `GENERAL`, `EXECUTIVE`, `EMERGENCY`, `ANNUAL`
+- Host field: optional member dropdown (links to `Meeting.hostId`)
+- Minutes upload (UploadThing) is a stretch goal — placeholder UI is fine if not implemented
+- The existing `/meetings` page (non-admin) remains unchanged for member read-only access
 
 ## History
 

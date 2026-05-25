@@ -17,6 +17,7 @@ import {
   Menu,
   LogOut,
   UserCircle,
+  ShieldCheck,
 } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -44,6 +45,11 @@ const navItems = [
   { label: "Settings", href: "/settings", icon: Settings },
 ];
 
+const adminNavItems = [
+  { label: "Manage Members", href: "/admin/members", icon: Users },
+  { label: "Manage Meetings", href: "/admin/meetings", icon: Calendar },
+];
+
 function getInitials(fullName: string) {
   return fullName
     .split(" ")
@@ -54,38 +60,66 @@ function getInitials(fullName: string) {
 
 function NavItems({
   collapsed = false,
+  userRole,
   onNavClick,
 }: {
   collapsed?: boolean;
+  userRole?: string;
   onNavClick?: () => void;
 }) {
   const pathname = usePathname();
+  const isAdmin = userRole === "ADMIN" || userRole === "SUPER_ADMIN";
+
+  const renderLink = (label: string, href: string, Icon: React.ElementType) => {
+    const isActive =
+      pathname === href ||
+      (href !== "/dashboard" && pathname.startsWith(href));
+    return (
+      <Link
+        key={href}
+        href={href}
+        title={collapsed ? label : undefined}
+        onClick={onNavClick}
+        className={cn(
+          "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
+          collapsed && "justify-center px-2",
+          isActive
+            ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
+            : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+        )}
+      >
+        <Icon className="size-4 shrink-0" />
+        {!collapsed && <span>{label}</span>}
+      </Link>
+    );
+  };
 
   return (
     <nav className="flex-1 px-2 py-3 space-y-0.5 overflow-y-auto">
-      {navItems.map(({ label, href, icon: Icon }) => {
-        const isActive =
-          pathname === href ||
-          (href !== "/dashboard" && pathname.startsWith(href));
-        return (
-          <Link
-            key={href}
-            href={href}
-            title={collapsed ? label : undefined}
-            onClick={onNavClick}
+      {navItems.map(({ label, href, icon: Icon }) =>
+        renderLink(label, href, Icon)
+      )}
+
+      {isAdmin && (
+        <>
+          <div
             className={cn(
-              "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
-              collapsed && "justify-center px-2",
-              isActive
-                ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
-                : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              "flex items-center gap-2 px-3 pt-4 pb-1",
+              collapsed && "justify-center px-2"
             )}
           >
-            <Icon className="size-4 shrink-0" />
-            {!collapsed && <span>{label}</span>}
-          </Link>
-        );
-      })}
+            <ShieldCheck className="size-3.5 text-muted-foreground shrink-0" />
+            {!collapsed && (
+              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                Admin
+              </span>
+            )}
+          </div>
+          {adminNavItems.map(({ label, href, icon: Icon }) =>
+            renderLink(label, href, Icon)
+          )}
+        </>
+      )}
     </nav>
   );
 }
@@ -173,7 +207,7 @@ export function AppSidebar({ user }: { user: User }) {
           </button>
         </div>
 
-        <NavItems collapsed={collapsed} />
+        <NavItems collapsed={collapsed} userRole={user.role} />
         <UserArea user={user} collapsed={collapsed} />
       </aside>
 
@@ -200,7 +234,7 @@ export function AppSidebar({ user }: { user: User }) {
             <div className="flex items-center h-14 px-4 border-b border-sidebar-border shrink-0">
               <span className="font-semibold text-sidebar-foreground">Akubueze</span>
             </div>
-            <NavItems onNavClick={() => setMobileOpen(false)} />
+            <NavItems userRole={user.role} onNavClick={() => setMobileOpen(false)} />
             <UserArea user={user} />
           </div>
         </SheetContent>
