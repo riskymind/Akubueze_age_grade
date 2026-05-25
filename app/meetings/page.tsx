@@ -1,5 +1,6 @@
 import { Suspense } from "react";
-import { Calendar, MapPin, Pencil, XCircle, Eye } from "lucide-react";
+import Link from "next/link";
+import { Calendar, MapPin, Eye } from "lucide-react";
 import { getCurrentUser } from "@/lib/dashboard-data";
 import { getMeetings } from "@/lib/meetings-data";
 import { MeetingsFilterBar } from "@/components/meetings/MeetingsFilterBar";
@@ -134,21 +135,20 @@ export default async function MeetingsPage({ searchParams }: PageProps) {
 
                 {/* Actions */}
                 <div className="flex items-center gap-2 mt-4">
-                  <button className="flex items-center gap-1.5 px-3 py-1.5 text-sm border border-border rounded-md text-foreground hover:bg-muted transition-colors">
+                  <Link
+                    href={`/meetings/${meeting.id}`}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-sm border border-border rounded-md text-foreground hover:bg-muted transition-colors"
+                  >
                     <Eye className="size-3.5" />
                     View Details
-                  </button>
-                  {isAdmin && meeting.status !== "COMPLETED" && meeting.status !== "CANCELLED" && (
-                    <>
-                      <button className="flex items-center gap-1.5 px-3 py-1.5 text-sm border border-border rounded-md text-foreground hover:bg-muted transition-colors">
-                        <Pencil className="size-3.5" />
-                        Edit
-                      </button>
-                      <button className="flex items-center gap-1.5 px-3 py-1.5 text-sm border border-red-200 dark:border-red-900/50 rounded-md text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
-                        <XCircle className="size-3.5" />
-                        Cancel
-                      </button>
-                    </>
+                  </Link>
+                  {isAdmin && (
+                    <Link
+                      href="/admin/meetings"
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-sm border border-border rounded-md text-foreground hover:bg-muted transition-colors"
+                    >
+                      Manage →
+                    </Link>
                   )}
                 </div>
               </div>
