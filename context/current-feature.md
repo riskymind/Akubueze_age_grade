@@ -1,40 +1,22 @@
-# Current Feature: Meeting Management — CRUD & Detail
+# Current Feature
 
 ## Status
 
-In Progress
+Not Started
 
 ## Goals
 
-- Build `/admin/meetings` list page (admin-only) with 4 stat cards: Total Meetings, Scheduled, Completed, Cancelled
-- Implement a search/filter bar with debounced search (meeting title), Status filter, and Type filter (URL-param-based)
-- Implement a paginated TanStack Table with columns: Title, Type, Status, Scheduled Date, Location, Host
-- Implement row actions dropdown: View Details, Edit (admin), Cancel (admin)
-- Build `/meetings/[id]` meeting detail page showing: header (title, type, status, date, location), agenda, notes, host
-- Detail page: Attendance section — table of members with their attendance status (Present/Absent/Excused) and remarks
-- Detail page: Meeting Minutes section — show minutes link/PDF viewer if `minutesUrl` set, placeholder if not
-- Implement Add Meeting sheet (admin): form fields — title, type, scheduledAt (date + time picker), location, agenda, hostId (member select), notes
-- Implement Edit Meeting sheet (admin): pre-fills existing data, same fields as Add
-- Implement Cancel Meeting dialog (admin): AlertDialog confirmation before setting status to CANCELLED
-- Implement Mark Attendance action (admin): on detail page, ability to mark Present/Absent/Excused per member per meeting
-- All forms use react-hook-form + Zod v4 validation
-- Server actions: `createMeeting`, `updateMeeting`, `cancelMeeting`, `markAttendance` (bulk or per-member)
-- Success/error feedback via Sonner toasts
-- Role-aware: ADMIN/SUPER_ADMIN can create/edit/cancel/mark attendance; MEMBER gets read-only view
+<!-- Add feature goals here -->
 
 ## Notes
 
-- Spec defined in `context/features/meeting-spec.md`
-- Follow the same patterns as `/admin/members` (TanStack Table, row actions dropdown, sheet modals, AlertDialog)
-- Meeting status lifecycle: `SCHEDULED → IN_PROGRESS → COMPLETED → CANCELLED`
-- Meeting types: `GENERAL`, `EXECUTIVE`, `EMERGENCY`, `ANNUAL`
-- Host field: optional member dropdown (links to `Meeting.hostId`)
-- Minutes upload (UploadThing) is a stretch goal — placeholder UI is fine if not implemented
-- The existing `/meetings` page (non-admin) remains unchanged for member read-only access
+<!-- Add feature notes here -->
 
 ## History
 
 <!-- Keep this updated. Earliest to latest -->
+
+- **2026-05-25** — Meeting Management (`/admin/meetings` + `/meetings/[id]`): Built `/admin/meetings` list page with 4 stat cards (Total/Scheduled/Completed/Cancelled), debounced search, Status/Type filters (URL-param-based), paginated TanStack Table with type/status badges, and row actions dropdown (View Details, Edit, Cancel). Built `/meetings/[id]` detail page with header card (type/status badges, title, date, location, host), agenda, notes, Meeting Minutes placeholder, and Attendance section. Attendance section: admins can mark Present/Absent/Excused per member with remarks; members get read-only view with colored status text. Server actions: `createMeeting`, `updateMeeting`, `cancelMeeting`, `markAttendance`. Add/Edit Meeting sheets use react-hook-form + Zod v4. Cancel Meeting uses AlertDialog. Sidebar updated with Admin section (Manage Members, Manage Meetings) for ADMIN/SUPER_ADMIN roles.
 
 - **2026-05-22** — Members Page (`/admin/members`): Built `/admin/members` list page with 4 stat cards (Total/Active/Suspended/Inactive), search/filter bar (debounced search, Status/Role/Gender selects, URL-param-based), paginated TanStack Table with avatar+name, role/status badges, and row actions dropdown. Built `/admin/members/[id]` detail page with profile header, 4 stat cards (Attendance Rate, Meetings Attended, Dues Paid/Pending), Attendance History card, and Payment History card with Meeting Dues / Other tabs. Full CRUD via server actions: `createMember` (with Resend credentials email), `updateMember`, `suspendMember`/`reactivateMember`, `triggerPasswordReset`. Add/Edit Member sheets use react-hook-form + Zod v4. Suspend/Reset dialogs use AlertDialog (controlled state). Extracted `canManage`/`ROLE_RANK` to `lib/permissions.ts` to keep role logic importable by client components. Added Sonner `<Toaster>` to root layout.
 
