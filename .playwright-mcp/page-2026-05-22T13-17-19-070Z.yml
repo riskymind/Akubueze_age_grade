@@ -1,0 +1,387 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: Akubueze
+        - button [ref=e178]:
+          - img [ref=e7]
+      - navigation [ref=e10]:
+        - link [ref=e179] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e12]
+          - generic [ref=e17]: Dashboard
+        - link [ref=e180] [cursor=pointer]:
+          - /url: /members
+          - img [ref=e19]
+          - generic [ref=e24]: Members
+        - link [ref=e181] [cursor=pointer]:
+          - /url: /meetings
+          - img [ref=e26]
+          - generic [ref=e28]: Meetings
+        - link [ref=e182] [cursor=pointer]:
+          - /url: /attendance
+          - img [ref=e30]
+          - generic [ref=e34]: Attendance
+        - link [ref=e183] [cursor=pointer]:
+          - /url: /payments
+          - img [ref=e36]
+          - generic [ref=e38]: Payments
+        - link [ref=e184] [cursor=pointer]:
+          - /url: /announcements
+          - img [ref=e40]
+          - generic [ref=e43]: Announcements
+        - link [ref=e185] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e45]
+          - generic [ref=e46]: Reports
+        - link [ref=e186] [cursor=pointer]:
+          - /url: /settings
+          - img [ref=e48]
+          - generic [ref=e51]: Settings
+      - button [ref=e187]:
+        - generic [ref=e55]: "ON"
+        - generic [ref=e56]: Obiora Nnamdi Eze
+    - main [ref=e57]:
+      - generic [ref=e188]:
+        - generic [ref=e189]:
+          - generic [ref=e190]:
+            - heading [level=1] [ref=e191]: Members
+            - paragraph [ref=e192]: 15 total members
+          - button [ref=e193]:
+            - img
+            - text: Add Member
+        - generic [ref=e194]:
+          - generic [ref=e195]:
+            - paragraph [ref=e196]: Total
+            - paragraph [ref=e197]: "15"
+          - generic [ref=e198]:
+            - paragraph [ref=e199]: Active
+            - paragraph [ref=e200]: "13"
+          - generic [ref=e201]:
+            - paragraph [ref=e202]: Suspended
+            - paragraph [ref=e203]: "1"
+          - generic [ref=e204]:
+            - paragraph [ref=e205]: Inactive
+            - paragraph [ref=e206]: "1"
+        - generic [ref=e207]:
+          - generic [ref=e208]:
+            - img
+            - textbox [ref=e209]:
+              - /placeholder: Search members...
+          - combobox [ref=e210]:
+            - generic [ref=e211]: Status
+            - img: ▼
+          - textbox [ref=e212]
+          - combobox [ref=e213]:
+            - generic [ref=e214]: Role
+            - img: ▼
+          - textbox [ref=e215]
+          - combobox [ref=e216]:
+            - generic [ref=e217]: Gender
+            - img: ▼
+          - textbox [ref=e218]
+        - table [ref=e221]:
+          - rowgroup [ref=e222]:
+            - row [ref=e223]:
+              - columnheader [ref=e224]: Member
+              - columnheader [ref=e225]: Phone
+              - columnheader [ref=e226]: Role
+              - columnheader [ref=e227]: Status
+              - columnheader [ref=e228]: Joined
+              - columnheader [ref=e229]
+          - rowgroup [ref=e230]:
+            - row [ref=e231] [cursor=pointer]:
+              - cell [ref=e232]:
+                - generic [ref=e233]:
+                  - generic [ref=e235]: SP
+                  - generic [ref=e236]:
+                    - paragraph [ref=e237]: Somtochukwu Paul Orji
+                    - paragraph [ref=e238]: s.orji@akubueze.com
+              - cell [ref=e239]: "08134567891"
+              - cell [ref=e240]:
+                - generic [ref=e241]: Member
+              - cell [ref=e242]:
+                - generic [ref=e243]: Active
+              - cell [ref=e244]: about 1 month ago
+              - cell [ref=e245]:
+                - button [ref=e247]:
+                  - img
+                  - generic [ref=e248]: Row actions
+            - row [ref=e249] [cursor=pointer]:
+              - cell [ref=e250]:
+                - generic [ref=e251]:
+                  - generic [ref=e253]: NG
+                  - generic [ref=e254]:
+                    - paragraph [ref=e255]: Nnamdi Godwin Ohaeri
+                    - paragraph [ref=e256]: n.ohaeri@akubueze.com
+              - cell [ref=e257]: "08001234567"
+              - cell [ref=e258]:
+                - generic [ref=e259]: Member
+              - cell [ref=e260]:
+                - generic [ref=e261]: Active
+              - cell [ref=e262]: 8 months ago
+              - cell [ref=e263]:
+                - button [ref=e265]:
+                  - img
+                  - generic [ref=e266]: Row actions
+            - row [ref=e267] [cursor=pointer]:
+              - cell [ref=e268]:
+                - generic [ref=e269]:
+                  - generic [ref=e271]: KB
+                  - generic [ref=e272]:
+                    - paragraph [ref=e273]: Kelechi Bright Onyia
+                    - paragraph [ref=e274]: k.onyia@akubueze.com
+              - cell [ref=e275]: "08112345678"
+              - cell [ref=e276]:
+                - generic [ref=e277]: Member
+              - cell [ref=e278]:
+                - generic [ref=e279]: Suspended
+              - cell [ref=e280]: about 1 year ago
+              - cell [ref=e281]:
+                - button [ref=e283]:
+                  - img
+                  - generic [ref=e284]: Row actions
+            - row [ref=e285] [cursor=pointer]:
+              - cell [ref=e286]:
+                - generic [ref=e287]:
+                  - generic [ref=e289]: CF
+                  - generic [ref=e290]:
+                    - paragraph [ref=e291]: Chinedu Festus Okonkwo
+                    - paragraph [ref=e292]: c.okonkwo@akubueze.com
+              - cell [ref=e293]: "08089012345"
+              - cell [ref=e294]:
+                - generic [ref=e295]: Member
+              - cell [ref=e296]:
+                - generic [ref=e297]: Active
+              - cell [ref=e298]: about 1 year ago
+              - cell [ref=e299]:
+                - button [ref=e301]:
+                  - img
+                  - generic [ref=e302]: Row actions
+            - row [ref=e303] [cursor=pointer]:
+              - cell [ref=e304]:
+                - generic [ref=e305]:
+                  - generic [ref=e307]: OV
+                  - generic [ref=e308]:
+                    - paragraph [ref=e309]: Onyekachi Vera Eze
+                    - paragraph [ref=e310]: o.eze@akubueze.com
+              - cell [ref=e311]: "08190123456"
+              - cell [ref=e312]:
+                - generic [ref=e313]: Member
+              - cell [ref=e314]:
+                - generic [ref=e315]: Active
+              - cell [ref=e316]: about 1 year ago
+              - cell [ref=e317]:
+                - button [ref=e319]:
+                  - img
+                  - generic [ref=e320]: Row actions
+            - row [ref=e321] [cursor=pointer]:
+              - cell [ref=e322]:
+                - generic [ref=e323]:
+                  - generic [ref=e325]: AB
+                  - generic [ref=e326]:
+                    - paragraph [ref=e327]: Adaora Blessing Nnadi
+                    - paragraph [ref=e328]: a.nnadi@akubueze.com
+              - cell [ref=e329]: "08178901234"
+              - cell [ref=e330]:
+                - generic [ref=e331]: Member
+              - cell [ref=e332]:
+                - generic [ref=e333]: Active
+              - cell [ref=e334]: about 1 year ago
+              - cell [ref=e335]:
+                - button [ref=e337]:
+                  - img
+                  - generic [ref=e338]: Row actions
+            - row [ref=e339] [cursor=pointer]:
+              - cell [ref=e340]:
+                - generic [ref=e341]:
+                  - generic [ref=e343]: CU
+                  - generic [ref=e344]:
+                    - paragraph [ref=e345]: Chidinma Uju Okeke
+                    - paragraph [ref=e346]: c.okeke@akubueze.com
+              - cell [ref=e347]: "08156789012"
+              - cell [ref=e348]:
+                - generic [ref=e349]: Member
+              - cell [ref=e350]:
+                - generic [ref=e351]: Active
+              - cell [ref=e352]: over 1 year ago
+              - cell [ref=e353]:
+                - button [ref=e355]:
+                  - img
+                  - generic [ref=e356]: Row actions
+            - row [ref=e357] [cursor=pointer]:
+              - cell [ref=e358]:
+                - generic [ref=e359]:
+                  - generic [ref=e361]: IS
+                  - generic [ref=e362]:
+                    - paragraph [ref=e363]: Ikechukwu Silas Nwosu
+                    - paragraph [ref=e364]: i.nwosu@akubueze.com
+              - cell [ref=e365]: "08045678901"
+              - cell [ref=e366]:
+                - generic [ref=e367]: Member
+              - cell [ref=e368]:
+                - generic [ref=e369]: Active
+              - cell [ref=e370]: over 1 year ago
+              - cell [ref=e371]:
+                - button [ref=e373]:
+                  - img
+                  - generic [ref=e374]: Row actions
+            - row [ref=e375] [cursor=pointer]:
+              - cell [ref=e376]:
+                - generic [ref=e377]:
+                  - generic [ref=e379]: UT
+                  - generic [ref=e380]:
+                    - paragraph [ref=e381]: Uche Tobias Ihejirika
+                    - paragraph [ref=e382]: u.ihejirika@akubueze.com
+              - cell [ref=e383]: "08067890123"
+              - cell [ref=e384]:
+                - generic [ref=e385]: Member
+              - cell [ref=e386]:
+                - generic [ref=e387]: Active
+              - cell [ref=e388]: over 1 year ago
+              - cell [ref=e389]:
+                - button [ref=e391]:
+                  - img
+                  - generic [ref=e392]: Row actions
+            - row [ref=e393] [cursor=pointer]:
+              - cell [ref=e394]:
+                - generic [ref=e395]:
+                  - generic [ref=e397]: EG
+                  - generic [ref=e398]:
+                    - paragraph [ref=e399]: Ebele Grace Odum
+                    - paragraph [ref=e400]: e.odum@akubueze.com
+              - cell [ref=e401]: "08023456780"
+              - cell [ref=e402]:
+                - generic [ref=e403]: Member
+              - cell [ref=e404]:
+                - generic [ref=e405]: Inactive
+              - cell [ref=e406]: about 2 years ago
+              - cell [ref=e407]:
+                - button [ref=e409]:
+                  - img
+                  - generic [ref=e410]: Row actions
+            - row [ref=e411] [cursor=pointer]:
+              - cell [ref=e412]:
+                - generic [ref=e413]:
+                  - generic [ref=e415]: NA
+                  - generic [ref=e416]:
+                    - paragraph [ref=e417]: Ngozi Amaka Obi
+                    - paragraph [ref=e418]: n.obi@akubueze.com
+              - cell [ref=e419]: "08134567890"
+              - cell [ref=e420]:
+                - generic [ref=e421]: Member
+              - cell [ref=e422]:
+                - generic [ref=e423]: Active
+              - cell [ref=e424]: about 2 years ago
+              - cell [ref=e425]:
+                - button [ref=e427]:
+                  - img
+                  - generic [ref=e428]: Row actions
+            - row [ref=e429] [cursor=pointer]:
+              - cell [ref=e430]:
+                - generic [ref=e431]:
+                  - generic [ref=e433]: EC
+                  - generic [ref=e434]:
+                    - paragraph [ref=e435]: Emeka Chukwudi Onwudiwe
+                    - paragraph [ref=e436]: emeka.onwudiwe@akubueze.com
+              - cell [ref=e437]: "08167890123"
+              - cell [ref=e438]:
+                - generic [ref=e439]: Admin
+              - cell [ref=e440]:
+                - generic [ref=e441]: Active
+              - cell [ref=e442]: about 2 years ago
+              - cell [ref=e443]:
+                - button [ref=e445]:
+                  - img
+                  - generic [ref=e446]: Row actions
+            - row [ref=e447] [cursor=pointer]:
+              - cell [ref=e448]:
+                - generic [ref=e449]:
+                  - generic [ref=e451]: CO
+                  - generic [ref=e452]:
+                    - paragraph [ref=e453]: Chukwuemeka Obinna Agu
+                    - paragraph [ref=e454]: c.agu@akubueze.com
+              - cell [ref=e455]: "08023456789"
+              - cell [ref=e456]:
+                - generic [ref=e457]: Member
+              - cell [ref=e458]:
+                - generic [ref=e459]: Active
+              - cell [ref=e460]: about 2 years ago
+              - cell [ref=e461]:
+                - button [ref=e463]:
+                  - img
+                  - generic [ref=e464]: Row actions
+            - row [ref=e465] [cursor=pointer]:
+              - cell [ref=e466]:
+                - generic [ref=e467]:
+                  - generic [ref=e469]: AC
+                  - generic [ref=e470]:
+                    - paragraph [ref=e471]: Adaeze Chisom Okafor
+                    - paragraph [ref=e472]: adaeze.okafor@akubueze.com
+              - cell [ref=e473]: "08055678901"
+              - cell [ref=e474]:
+                - generic [ref=e475]: Admin
+              - cell [ref=e476]:
+                - generic [ref=e477]: Active
+              - cell [ref=e478]: over 2 years ago
+              - cell [ref=e479]:
+                - button [ref=e481]:
+                  - img
+                  - generic [ref=e482]: Row actions
+            - row [ref=e483] [cursor=pointer]:
+              - cell [ref=e484]:
+                - generic [ref=e485]:
+                  - generic [ref=e487]: "ON"
+                  - generic [ref=e488]:
+                    - paragraph [ref=e489]: Obiora Nnamdi Eze
+                    - paragraph [ref=e490]: superadmin@akubueze.com
+              - cell [ref=e491]: "08031234567"
+              - cell [ref=e492]:
+                - generic [ref=e493]: Super Admin
+              - cell [ref=e494]:
+                - generic [ref=e495]: Active
+              - cell [ref=e496]: about 3 years ago
+              - cell [ref=e497]:
+                - button [ref=e499]:
+                  - img
+                  - generic [ref=e500]: Row actions
+  - region "Notifications alt+T"
+  - alert [ref=e177]
+  - dialog "Add New Member" [ref=e504]:
+    - generic [ref=e505]:
+      - heading "Add New Member" [level=2] [ref=e506]
+      - paragraph [ref=e507]: Create an account and send login credentials by email.
+    - generic [ref=e508]:
+      - generic [ref=e509]:
+        - generic [ref=e510]: Full Name *
+        - textbox "Full Name *" [active] [ref=e511]
+      - generic [ref=e512]:
+        - generic [ref=e513]: Email *
+        - textbox "Email *" [ref=e514]
+      - generic [ref=e515]:
+        - generic [ref=e516]: Phone
+        - textbox "Phone" [ref=e517]
+      - generic [ref=e518]:
+        - generic [ref=e519]: Role *
+        - combobox [ref=e520]:
+          - generic [ref=e521]: MEMBER
+          - img: ▼
+        - textbox [ref=e522]: MEMBER
+      - generic [ref=e523]:
+        - generic [ref=e524]: Gender
+        - combobox [ref=e525]:
+          - generic [ref=e526]: Select gender
+          - img: ▼
+        - textbox [ref=e527]
+      - generic [ref=e528]:
+        - generic [ref=e529]: Occupation
+        - textbox "Occupation" [ref=e530]
+      - generic [ref=e531]:
+        - generic [ref=e532]: Address
+        - textbox "Address" [ref=e533]
+      - generic [ref=e534]:
+        - button "Cancel" [ref=e535]
+        - button "Create Member" [ref=e536]
+    - button "Close" [ref=e537]:
+      - img
+      - generic [ref=e538]: Close

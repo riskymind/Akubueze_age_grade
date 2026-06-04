@@ -1,0 +1,166 @@
+- generic [ref=e1]:
+  - alert [ref=e16]
+  - generic [ref=e17]:
+    - complementary [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e20]: Akubueze
+        - button "Collapse sidebar" [ref=e21]:
+          - img [ref=e22]
+      - navigation [ref=e25]:
+        - link "Dashboard" [ref=e26] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e27]
+          - generic [ref=e32]: Dashboard
+        - link "Members" [ref=e33] [cursor=pointer]:
+          - /url: /members
+          - img [ref=e34]
+          - generic [ref=e39]: Members
+        - link "Meetings" [ref=e40] [cursor=pointer]:
+          - /url: /meetings
+          - img [ref=e41]
+          - generic [ref=e43]: Meetings
+        - link "Attendance" [ref=e44] [cursor=pointer]:
+          - /url: /attendance
+          - img [ref=e45]
+          - generic [ref=e49]: Attendance
+        - link "Payments" [ref=e50] [cursor=pointer]:
+          - /url: /payments
+          - img [ref=e51]
+          - generic [ref=e53]: Payments
+        - link "Announcements" [ref=e54] [cursor=pointer]:
+          - /url: /announcements
+          - img [ref=e55]
+          - generic [ref=e58]: Announcements
+        - link "Reports" [ref=e59] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e60]
+          - generic [ref=e61]: Reports
+        - link "Settings" [ref=e62] [cursor=pointer]:
+          - /url: /settings
+          - img [ref=e63]
+          - generic [ref=e66]: Settings
+      - button "User menu" [active] [ref=e68]:
+        - generic [ref=e70]: "ON"
+        - generic [ref=e71]: Obiora Nnamdi Eze
+    - main [ref=e72]:
+      - generic [ref=e73]:
+        - generic [ref=e74]:
+          - heading "Dashboard" [level=1] [ref=e75]
+          - paragraph [ref=e76]: Welcome back, Obiora Nnamdi Eze
+        - generic [ref=e77]:
+          - generic [ref=e78]:
+            - generic [ref=e79]:
+              - generic [ref=e80]: Total Members
+              - img [ref=e81]
+            - generic [ref=e86]: "13"
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - generic [ref=e89]: Upcoming Meetings
+              - img [ref=e90]
+            - generic [ref=e92]: "3"
+          - generic [ref=e93]:
+            - generic [ref=e94]:
+              - generic [ref=e95]: Payments This Month
+              - img [ref=e96]
+            - generic [ref=e99]: ₦13,000
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - generic [ref=e102]: Attendance Rate
+              - img [ref=e103]
+            - generic [ref=e106]: 74%
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - heading "Recent Activity" [level=2] [ref=e109]
+            - list [ref=e110]:
+              - listitem [ref=e111]:
+                - paragraph [ref=e112]: Adaeze Chisom Okafor marked attendance for February Executive Review
+                - paragraph [ref=e113]: 6 days ago
+              - listitem [ref=e114]:
+                - paragraph [ref=e115]: Adaeze Chisom Okafor marked attendance for March General Meeting
+                - paragraph [ref=e116]: 6 days ago
+              - listitem [ref=e117]:
+                - paragraph [ref=e118]: Adaeze Chisom Okafor marked attendance for April Emergency Meeting
+                - paragraph [ref=e119]: 6 days ago
+              - listitem [ref=e120]:
+                - paragraph [ref=e121]: Adaeze Chisom Okafor marked attendance for May General Meeting
+                - paragraph [ref=e122]: 6 days ago
+              - listitem [ref=e123]:
+                - paragraph [ref=e124]: Adaeze Chisom Okafor marked attendance for January General Assembly
+                - paragraph [ref=e125]: 6 days ago
+              - listitem [ref=e126]:
+                - paragraph [ref=e127]: Emeka Chukwudi Onwudiwe recorded payment of ₦1,000 — Meeting Dues
+                - paragraph [ref=e128]: 20 days ago
+              - listitem [ref=e129]:
+                - paragraph [ref=e130]: Chukwuemeka Obinna Agu recorded payment of ₦1,000 — Meeting Dues
+                - paragraph [ref=e131]: 20 days ago
+              - listitem [ref=e132]:
+                - paragraph [ref=e133]: Uche Tobias Ihejirika recorded payment of ₦5,000 — Meeting Host Fee
+                - paragraph [ref=e134]: 20 days ago
+          - generic [ref=e135]:
+            - heading "Announcements" [level=2] [ref=e136]
+            - list [ref=e137]:
+              - listitem [ref=e138]:
+                - generic [ref=e139]:
+                  - img [ref=e140]
+                  - paragraph [ref=e142]: Annual General Meeting — Save the Date
+                - paragraph [ref=e143]: Dear members, the Akubueze Age Grade Annual General Meeting is scheduled for Sat Jun 06 2026 at Victory Hall, Rumuola, Port Harcourt. Attendance is compulsory for all active members. The formal agenda will be circulated one week before the meeting. Members who cannot attend must notify the Secretary General in advance.
+                - paragraph [ref=e144]: 27 days ago
+              - listitem [ref=e145]:
+                - generic [ref=e146]:
+                  - img [ref=e147]
+                  - paragraph [ref=e149]: Community Borehole Project — Levy Collection
+                - paragraph [ref=e150]: The executive committee has unanimously approved a development levy of ₦5,000 per member toward the construction of a community borehole on Rumuola Road. This is a mandatory contribution. Payment deadline is end of March. Contact the Treasurer to make your payment.
+                - paragraph [ref=e151]: 4 months ago
+              - listitem [ref=e152]:
+                - generic [ref=e153]:
+                  - img [ref=e154]
+                  - paragraph [ref=e156]: Welcome to Akubueze Online Portal
+                - paragraph [ref=e157]: Dear members, we are pleased to announce the launch of the Akubueze digital management platform. All members are encouraged to log in using the credentials provided and update your profiles. For login issues, please contact the Secretary General.
+                - paragraph [ref=e158]: 6 months ago
+              - listitem [ref=e159]:
+                - paragraph [ref=e161]: July Meeting Dues — Payment Deadline
+                - paragraph [ref=e162]: This is a reminder that July meeting dues are now outstanding. The host pays ₦5,000; all other members pay ₦1,000. Members who have not paid by end of month will attract a ₦1,500 fine. Please make payment to the Treasurer and collect your receipt. Thank you.
+                - paragraph [ref=e163]: 13 days ago
+              - listitem [ref=e164]:
+                - paragraph [ref=e166]: Misconduct Hearing Outcome
+                - paragraph [ref=e167]: Following the emergency meeting held in April, the executive committee has concluded proceedings relating to the misconduct report. A member has been placed on suspension pending a formal review. Full details were communicated at the meeting. Members with questions should direct them to the President.
+                - paragraph [ref=e168]: 3 months ago
+        - generic [ref=e169]:
+          - heading "Upcoming Meetings" [level=2] [ref=e170]
+          - list [ref=e171]:
+            - listitem [ref=e172]:
+              - generic [ref=e173]:
+                - generic [ref=e174]:
+                  - generic [ref=e175]: Annual General Meeting 2026
+                  - generic [ref=e176]: Annual
+                - generic [ref=e177]:
+                  - generic [ref=e178]:
+                    - img [ref=e179]
+                    - text: Sat, 6 Jun 2026, 15:57
+                  - generic [ref=e182]:
+                    - img [ref=e183]
+                    - text: Victory Hall, Rumuola, Port Harcourt
+            - listitem [ref=e186]:
+              - generic [ref=e187]:
+                - generic [ref=e188]:
+                  - generic [ref=e189]: August Executive Meeting
+                  - generic [ref=e190]: Executive
+                - generic [ref=e191]:
+                  - generic [ref=e192]:
+                    - img [ref=e193]
+                    - text: Sat, 20 Jun 2026, 15:57
+                  - generic [ref=e196]:
+                    - img [ref=e197]
+                    - text: Secretariat Office, Ada George Road
+            - listitem [ref=e200]:
+              - generic [ref=e201]:
+                - generic [ref=e202]:
+                  - generic [ref=e203]: August General Meeting
+                  - generic [ref=e204]: General
+                - generic [ref=e205]:
+                  - generic [ref=e206]:
+                    - img [ref=e207]
+                    - text: Sat, 4 Jul 2026, 15:57
+                  - generic [ref=e210]:
+                    - img [ref=e211]
+                    - text: Town Hall, Mile 1, Port Harcourt

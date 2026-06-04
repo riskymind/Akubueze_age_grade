@@ -1,0 +1,122 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: Akubueze
+        - button "Collapse sidebar" [ref=e6]:
+          - img [ref=e7]
+      - navigation [ref=e10]:
+        - link "Dashboard" [ref=e11] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e12]
+          - generic [ref=e17]: Dashboard
+        - link "Members" [ref=e18] [cursor=pointer]:
+          - /url: /members
+          - img [ref=e19]
+          - generic [ref=e24]: Members
+        - link "Meetings" [ref=e25] [cursor=pointer]:
+          - /url: /meetings
+          - img [ref=e26]
+          - generic [ref=e28]: Meetings
+        - link "Attendance" [ref=e29] [cursor=pointer]:
+          - /url: /attendance
+          - img [ref=e30]
+          - generic [ref=e34]: Attendance
+        - link "Payments" [ref=e35] [cursor=pointer]:
+          - /url: /payments
+          - img [ref=e36]
+          - generic [ref=e38]: Payments
+        - link "Announcements" [ref=e39] [cursor=pointer]:
+          - /url: /announcements
+          - img [ref=e40]
+          - generic [ref=e43]: Announcements
+        - link "Reports" [ref=e44] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e45]
+          - generic [ref=e46]: Reports
+        - link "Settings" [ref=e47] [cursor=pointer]:
+          - /url: /settings
+          - img [ref=e48]
+          - generic [ref=e51]: Settings
+      - button "User menu" [ref=e53]:
+        - generic [ref=e55]: "ON"
+        - generic [ref=e56]: Obiora Nnamdi Eze
+    - main [ref=e57]:
+      - generic [ref=e491]:
+        - navigation [ref=e492]:
+          - link "Members" [ref=e493] [cursor=pointer]:
+            - /url: /admin/members
+          - img [ref=e494]
+          - generic [ref=e496]: Somtochukwu Paul Orji
+        - generic [ref=e498]:
+          - generic [ref=e499]:
+            - generic [ref=e501]: SP
+            - generic [ref=e502]:
+              - heading "Somtochukwu Paul Orji" [level=2] [ref=e503]
+              - generic [ref=e504]:
+                - generic [ref=e505]: Member
+                - generic [ref=e506]: Active
+              - generic [ref=e507]:
+                - paragraph [ref=e508]:
+                  - img [ref=e509]
+                  - text: s.orji@akubueze.com
+                - paragraph [ref=e512]:
+                  - img [ref=e513]
+                  - text: "08134567891"
+                - paragraph [ref=e515]:
+                  - img [ref=e516]
+                  - text: Student
+                - paragraph [ref=e519]:
+                  - img [ref=e520]
+                  - text: 1 University Road, Choba
+                - paragraph [ref=e523]: Joined about 1 month ago
+          - generic [ref=e524]:
+            - button "Edit" [ref=e525]
+            - button "Reset Password" [ref=e526]:
+              - img
+              - text: Reset Password
+            - button "Suspend" [ref=e527]
+        - generic [ref=e528]:
+          - generic [ref=e529]:
+            - paragraph [ref=e530]: Attendance Rate
+            - paragraph [ref=e531]: 100%
+          - generic [ref=e532]:
+            - paragraph [ref=e533]: Meetings Attended
+            - paragraph [ref=e534]: 1 / 1
+          - generic [ref=e535]:
+            - paragraph [ref=e536]: Dues Paid
+            - paragraph [ref=e537]: "1"
+          - generic [ref=e538]:
+            - paragraph [ref=e539]: Dues Pending
+            - paragraph [ref=e540]: "0"
+        - generic [ref=e541]:
+          - generic [ref=e542]:
+            - generic [ref=e544]:
+              - img [ref=e545]
+              - text: Attendance History
+            - generic [ref=e549]:
+              - img [ref=e550]
+              - generic [ref=e553]:
+                - generic [ref=e554]:
+                  - generic [ref=e555]: July General Meeting
+                  - generic [ref=e556]: General
+                - paragraph [ref=e557]: 2 May 2026 · 20 days ago
+              - generic [ref=e558]: PRESENT
+          - generic [ref=e559]:
+            - generic [ref=e561]:
+              - img [ref=e562]
+              - text: Payment History
+            - generic [ref=e565]:
+              - tablist [ref=e566]:
+                - tab "Meeting Dues (1)" [selected] [ref=e567]
+                - tab "Other (0)" [ref=e568]
+              - tabpanel "Meeting Dues (1)" [ref=e569]:
+                - generic [ref=e571]:
+                  - generic [ref=e572]:
+                    - paragraph [ref=e573]: Meeting dues — July General Meeting
+                    - paragraph [ref=e574]: 16 May 2026 · 6 days ago
+                  - generic [ref=e575]:
+                    - paragraph [ref=e576]: ₦1,000
+                    - text: PAID
+  - region "Notifications alt+T"
+  - alert [ref=e177]

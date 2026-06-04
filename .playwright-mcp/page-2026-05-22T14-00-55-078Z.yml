@@ -1,0 +1,84 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e503]:
+    - complementary [ref=e504]:
+      - generic [ref=e505]:
+        - generic [ref=e506]: Akubueze
+        - button "Collapse sidebar" [ref=e507]:
+          - img [ref=e508]
+      - navigation [ref=e511]:
+        - link "Dashboard" [ref=e512] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e513]
+          - generic [ref=e518]: Dashboard
+        - link "Members" [ref=e519] [cursor=pointer]:
+          - /url: /members
+          - img [ref=e520]
+          - generic [ref=e525]: Members
+        - link "Meetings" [ref=e526] [cursor=pointer]:
+          - /url: /meetings
+          - img [ref=e527]
+          - generic [ref=e529]: Meetings
+        - link "Attendance" [ref=e530] [cursor=pointer]:
+          - /url: /attendance
+          - img [ref=e531]
+          - generic [ref=e535]: Attendance
+        - link "Payments" [ref=e536] [cursor=pointer]:
+          - /url: /payments
+          - img [ref=e537]
+          - generic [ref=e539]: Payments
+        - link "Announcements" [ref=e540] [cursor=pointer]:
+          - /url: /announcements
+          - img [ref=e541]
+          - generic [ref=e544]: Announcements
+        - link "Reports" [ref=e545] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e546]
+          - generic [ref=e547]: Reports
+        - link "Settings" [ref=e548] [cursor=pointer]:
+          - /url: /settings
+          - img [ref=e549]
+          - generic [ref=e552]: Settings
+        - generic [ref=e553]:
+          - img [ref=e554]
+          - generic [ref=e557]: Admin
+        - link "Manage Members" [ref=e558] [cursor=pointer]:
+          - /url: /admin/members
+          - img [ref=e559]
+          - generic [ref=e564]: Manage Members
+        - link "Manage Meetings" [ref=e565] [cursor=pointer]:
+          - /url: /admin/meetings
+          - img [ref=e566]
+          - generic [ref=e568]: Manage Meetings
+      - button "User menu" [ref=e570]:
+        - generic [ref=e572]: "ON"
+        - generic [ref=e573]: Obiora Nnamdi Eze
+    - main [ref=e574]:
+      - generic [ref=e575]:
+        - navigation [ref=e576]:
+          - link "Meetings" [ref=e577] [cursor=pointer]:
+            - /url: /meetings
+          - img [ref=e578]
+          - generic [ref=e580]: August General Meeting
+        - generic [ref=e582]:
+          - generic [ref=e583]:
+            - generic [ref=e584]:
+              - generic [ref=e585]: General
+              - generic [ref=e586]: Scheduled
+            - heading "August General Meeting" [level=2] [ref=e587]
+            - generic [ref=e588]:
+              - paragraph [ref=e589]:
+                - img [ref=e590]
+                - text: Saturday, July 4, 2026 at 3:57 PM
+              - paragraph [ref=e592]:
+                - img [ref=e593]
+                - text: Town Hall, Mile 1, Port Harcourt
+          - link "Manage Meetings →" [ref=e596] [cursor=pointer]:
+            - /url: /admin/meetings
+        - generic [ref=e597]:
+          - heading "Meeting Minutes" [level=3] [ref=e598]
+          - paragraph [ref=e599]: No minutes uploaded yet.
+        - generic [ref=e600]:
+          - heading "Attendance" [level=3] [ref=e602]
+          - paragraph [ref=e603]: No attendance records yet.
+  - region "Notifications alt+T"
+  - alert [ref=e261]

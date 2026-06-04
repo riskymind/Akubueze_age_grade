@@ -1,0 +1,243 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: Akubueze
+        - button "Collapse sidebar" [ref=e6]:
+          - img [ref=e7]
+      - navigation [ref=e10]:
+        - link "Dashboard" [ref=e11] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e12]
+          - generic [ref=e17]: Dashboard
+        - link "Members" [ref=e18] [cursor=pointer]:
+          - /url: /members
+          - img [ref=e19]
+          - generic [ref=e24]: Members
+        - link "Meetings" [ref=e25] [cursor=pointer]:
+          - /url: /meetings
+          - img [ref=e26]
+          - generic [ref=e28]: Meetings
+        - link "Attendance" [ref=e29] [cursor=pointer]:
+          - /url: /attendance
+          - img [ref=e30]
+          - generic [ref=e34]: Attendance
+        - link "Payments" [ref=e35] [cursor=pointer]:
+          - /url: /payments
+          - img [ref=e36]
+          - generic [ref=e38]: Payments
+        - link "Announcements" [ref=e39] [cursor=pointer]:
+          - /url: /announcements
+          - img [ref=e40]
+          - generic [ref=e43]: Announcements
+        - link "Reports" [ref=e44] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e45]
+          - generic [ref=e46]: Reports
+        - link "Settings" [ref=e47] [cursor=pointer]:
+          - /url: /settings
+          - img [ref=e48]
+          - generic [ref=e51]: Settings
+        - generic [ref=e52]:
+          - img [ref=e53]
+          - generic [ref=e56]: Admin
+        - link "Manage Members" [ref=e57] [cursor=pointer]:
+          - /url: /admin/members
+          - img [ref=e58]
+          - generic [ref=e63]: Manage Members
+        - link "Manage Meetings" [ref=e64] [cursor=pointer]:
+          - /url: /admin/meetings
+          - img [ref=e65]
+          - generic [ref=e67]: Manage Meetings
+      - button "User menu" [ref=e69]:
+        - generic [ref=e71]: "ON"
+        - generic [ref=e72]: Obiora Nnamdi Eze
+    - main [ref=e73]:
+      - generic [ref=e74]:
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - heading "Meetings" [level=1] [ref=e77]
+            - paragraph [ref=e78]: 10 total meetings
+          - button "Schedule Meeting" [ref=e79]:
+            - img
+            - text: Schedule Meeting
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - paragraph [ref=e82]: Total
+            - paragraph [ref=e83]: "10"
+          - generic [ref=e84]:
+            - paragraph [ref=e85]: Scheduled
+            - paragraph [ref=e86]: "3"
+          - generic [ref=e87]:
+            - paragraph [ref=e88]: Completed
+            - paragraph [ref=e89]: "7"
+          - generic [ref=e90]:
+            - paragraph [ref=e91]: Cancelled
+            - paragraph [ref=e92]: "0"
+        - generic [ref=e93]:
+          - generic [ref=e94]:
+            - img
+            - textbox "Search meetings..." [ref=e95]
+          - combobox [ref=e96]:
+            - generic [ref=e97]: ALL
+            - img: ▼
+          - textbox [ref=e98]: ALL
+          - combobox [ref=e99]:
+            - generic [ref=e100]: ALL
+            - img: ▼
+          - textbox [ref=e101]: ALL
+        - table [ref=e104]:
+          - rowgroup [ref=e105]:
+            - row "Meeting Type Status Scheduled Location" [ref=e106]:
+              - columnheader "Meeting" [ref=e107]
+              - columnheader "Type" [ref=e108]
+              - columnheader "Status" [ref=e109]
+              - columnheader "Scheduled" [ref=e110]
+              - columnheader "Location" [ref=e111]
+              - columnheader [ref=e112]
+          - rowgroup [ref=e113]:
+            - row "August General Meeting General Scheduled Jul 4, 2026 at 3:57 PM Town Hall, Mile 1, Port Harcourt Row actions" [ref=e114] [cursor=pointer]:
+              - cell "August General Meeting" [ref=e115]:
+                - paragraph [ref=e117]: August General Meeting
+              - cell "General" [ref=e118]:
+                - generic [ref=e119]: General
+              - cell "Scheduled" [ref=e120]:
+                - generic [ref=e121]: Scheduled
+              - cell "Jul 4, 2026 at 3:57 PM" [ref=e122]
+              - cell "Town Hall, Mile 1, Port Harcourt" [ref=e123]
+              - cell "Row actions" [ref=e124]:
+                - button "Row actions" [ref=e126]:
+                  - img
+                  - generic [ref=e127]: Row actions
+            - row "August Executive Meeting Executive Scheduled Jun 20, 2026 at 3:57 PM Secretariat Office, Ada George Road Row actions" [ref=e128] [cursor=pointer]:
+              - cell "August Executive Meeting" [ref=e129]:
+                - paragraph [ref=e131]: August Executive Meeting
+              - cell "Executive" [ref=e132]:
+                - generic [ref=e133]: Executive
+              - cell "Scheduled" [ref=e134]:
+                - generic [ref=e135]: Scheduled
+              - cell "Jun 20, 2026 at 3:57 PM" [ref=e136]
+              - cell "Secretariat Office, Ada George Road" [ref=e137]
+              - cell "Row actions" [ref=e138]:
+                - button "Row actions" [ref=e140]:
+                  - img
+                  - generic [ref=e141]: Row actions
+            - row "Annual General Meeting 2026 Annual Scheduled Jun 6, 2026 at 3:57 PM Victory Hall, Rumuola, Port Harcourt Row actions" [ref=e142] [cursor=pointer]:
+              - cell "Annual General Meeting 2026" [ref=e143]:
+                - paragraph [ref=e145]: Annual General Meeting 2026
+              - cell "Annual" [ref=e146]:
+                - generic [ref=e147]: Annual
+              - cell "Scheduled" [ref=e148]:
+                - generic [ref=e149]: Scheduled
+              - cell "Jun 6, 2026 at 3:57 PM" [ref=e150]
+              - cell "Victory Hall, Rumuola, Port Harcourt" [ref=e151]
+              - cell "Row actions" [ref=e152]:
+                - button "Row actions" [ref=e154]:
+                  - img
+                  - generic [ref=e155]: Row actions
+            - 'row "July General Meeting Host: Uche Tobias Ihejirika General Completed May 2, 2026 at 3:57 PM Town Hall, Mile 1, Port Harcourt Row actions" [ref=e156] [cursor=pointer]':
+              - 'cell "July General Meeting Host: Uche Tobias Ihejirika" [ref=e157]':
+                - generic [ref=e158]:
+                  - paragraph [ref=e159]: July General Meeting
+                  - paragraph [ref=e160]: "Host: Uche Tobias Ihejirika"
+              - cell "General" [ref=e161]:
+                - generic [ref=e162]: General
+              - cell "Completed" [ref=e163]:
+                - generic [ref=e164]: Completed
+              - cell "May 2, 2026 at 3:57 PM" [ref=e165]
+              - cell "Town Hall, Mile 1, Port Harcourt" [ref=e166]
+              - cell "Row actions" [ref=e167]:
+                - button "Row actions" [ref=e169]:
+                  - img
+                  - generic [ref=e170]: Row actions
+            - 'row "June Executive Session Host: Chinedu Festus Okonkwo Executive Completed Apr 15, 2026 at 3:57 PM Secretariat Office, Ada George Road Row actions" [ref=e171] [cursor=pointer]':
+              - 'cell "June Executive Session Host: Chinedu Festus Okonkwo" [ref=e172]':
+                - generic [ref=e173]:
+                  - paragraph [ref=e174]: June Executive Session
+                  - paragraph [ref=e175]: "Host: Chinedu Festus Okonkwo"
+              - cell "Executive" [ref=e176]:
+                - generic [ref=e177]: Executive
+              - cell "Completed" [ref=e178]:
+                - generic [ref=e179]: Completed
+              - cell "Apr 15, 2026 at 3:57 PM" [ref=e180]
+              - cell "Secretariat Office, Ada George Road" [ref=e181]
+              - cell "Row actions" [ref=e182]:
+                - button "Row actions" [ref=e184]:
+                  - img
+                  - generic [ref=e185]: Row actions
+            - 'row "May General Meeting Host: Onyekachi Vera Eze General Completed Mar 15, 2026 at 3:57 PM Town Hall, Mile 1, Port Harcourt Row actions" [ref=e186] [cursor=pointer]':
+              - 'cell "May General Meeting Host: Onyekachi Vera Eze" [ref=e187]':
+                - generic [ref=e188]:
+                  - paragraph [ref=e189]: May General Meeting
+                  - paragraph [ref=e190]: "Host: Onyekachi Vera Eze"
+              - cell "General" [ref=e191]:
+                - generic [ref=e192]: General
+              - cell "Completed" [ref=e193]:
+                - generic [ref=e194]: Completed
+              - cell "Mar 15, 2026 at 3:57 PM" [ref=e195]
+              - cell "Town Hall, Mile 1, Port Harcourt" [ref=e196]
+              - cell "Row actions" [ref=e197]:
+                - button "Row actions" [ref=e199]:
+                  - img
+                  - generic [ref=e200]: Row actions
+            - 'row "April Emergency Meeting Host: Chidinma Uju Okeke Emergency Completed Feb 15, 2026 at 3:57 PM Secretariat Office, Ada George Road Row actions" [ref=e201] [cursor=pointer]':
+              - 'cell "April Emergency Meeting Host: Chidinma Uju Okeke" [ref=e202]':
+                - generic [ref=e203]:
+                  - paragraph [ref=e204]: April Emergency Meeting
+                  - paragraph [ref=e205]: "Host: Chidinma Uju Okeke"
+              - cell "Emergency" [ref=e206]:
+                - generic [ref=e207]: Emergency
+              - cell "Completed" [ref=e208]:
+                - generic [ref=e209]: Completed
+              - cell "Feb 15, 2026 at 3:57 PM" [ref=e210]
+              - cell "Secretariat Office, Ada George Road" [ref=e211]
+              - cell "Row actions" [ref=e212]:
+                - button "Row actions" [ref=e214]:
+                  - img
+                  - generic [ref=e215]: Row actions
+            - 'row "March General Meeting Host: Adaora Blessing Nnadi General Completed Jan 15, 2026 at 3:57 PM Town Hall, Mile 1, Port Harcourt Row actions" [ref=e216] [cursor=pointer]':
+              - 'cell "March General Meeting Host: Adaora Blessing Nnadi" [ref=e217]':
+                - generic [ref=e218]:
+                  - paragraph [ref=e219]: March General Meeting
+                  - paragraph [ref=e220]: "Host: Adaora Blessing Nnadi"
+              - cell "General" [ref=e221]:
+                - generic [ref=e222]: General
+              - cell "Completed" [ref=e223]:
+                - generic [ref=e224]: Completed
+              - cell "Jan 15, 2026 at 3:57 PM" [ref=e225]
+              - cell "Town Hall, Mile 1, Port Harcourt" [ref=e226]
+              - cell "Row actions" [ref=e227]:
+                - button "Row actions" [ref=e229]:
+                  - img
+                  - generic [ref=e230]: Row actions
+            - 'row "February Executive Review Host: Ngozi Amaka Obi Executive Completed Dec 15, 2025 at 3:57 PM Secretariat Office, Ada George Road Row actions" [ref=e231] [cursor=pointer]':
+              - 'cell "February Executive Review Host: Ngozi Amaka Obi" [ref=e232]':
+                - generic [ref=e233]:
+                  - paragraph [ref=e234]: February Executive Review
+                  - paragraph [ref=e235]: "Host: Ngozi Amaka Obi"
+              - cell "Executive" [ref=e236]:
+                - generic [ref=e237]: Executive
+              - cell "Completed" [ref=e238]:
+                - generic [ref=e239]: Completed
+              - cell "Dec 15, 2025 at 3:57 PM" [ref=e240]
+              - cell "Secretariat Office, Ada George Road" [ref=e241]
+              - cell "Row actions" [ref=e242]:
+                - button "Row actions" [ref=e244]:
+                  - img
+                  - generic [ref=e245]: Row actions
+            - 'row "January General Assembly Host: Chukwuemeka Obinna Agu General Completed Nov 15, 2025 at 3:57 PM Town Hall, Mile 1, Port Harcourt Row actions" [ref=e246] [cursor=pointer]':
+              - 'cell "January General Assembly Host: Chukwuemeka Obinna Agu" [ref=e247]':
+                - generic [ref=e248]:
+                  - paragraph [ref=e249]: January General Assembly
+                  - paragraph [ref=e250]: "Host: Chukwuemeka Obinna Agu"
+              - cell "General" [ref=e251]:
+                - generic [ref=e252]: General
+              - cell "Completed" [ref=e253]:
+                - generic [ref=e254]: Completed
+              - cell "Nov 15, 2025 at 3:57 PM" [ref=e255]
+              - cell "Town Hall, Mile 1, Port Harcourt" [ref=e256]
+              - cell "Row actions" [ref=e257]:
+                - button "Row actions" [ref=e259]:
+                  - img
+                  - generic [ref=e260]: Row actions
+  - region "Notifications alt+T"

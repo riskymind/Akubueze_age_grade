@@ -1,0 +1,193 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e219]:
+    - complementary [ref=e220]:
+      - generic [ref=e221]:
+        - generic [ref=e222]: Akubueze
+        - button "Collapse sidebar" [ref=e223]:
+          - img [ref=e224]
+      - navigation [ref=e227]:
+        - link "Dashboard" [ref=e228] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e229]
+          - generic [ref=e234]: Dashboard
+        - link "Members" [ref=e235] [cursor=pointer]:
+          - /url: /members
+          - img [ref=e236]
+          - generic [ref=e241]: Members
+        - link "Meetings" [ref=e242] [cursor=pointer]:
+          - /url: /meetings
+          - img [ref=e243]
+          - generic [ref=e245]: Meetings
+        - link "Attendance" [ref=e246] [cursor=pointer]:
+          - /url: /attendance
+          - img [ref=e247]
+          - generic [ref=e251]: Attendance
+        - link "Payments" [ref=e252] [cursor=pointer]:
+          - /url: /payments
+          - img [ref=e253]
+          - generic [ref=e255]: Payments
+        - link "Announcements" [ref=e256] [cursor=pointer]:
+          - /url: /announcements
+          - img [ref=e257]
+          - generic [ref=e260]: Announcements
+        - link "Reports" [ref=e261] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e262]
+          - generic [ref=e263]: Reports
+        - link "Settings" [ref=e264] [cursor=pointer]:
+          - /url: /settings
+          - img [ref=e265]
+          - generic [ref=e268]: Settings
+        - generic [ref=e269]:
+          - img [ref=e270]
+          - generic [ref=e273]: Admin
+        - link "Manage Members" [ref=e274] [cursor=pointer]:
+          - /url: /admin/members
+          - img [ref=e275]
+          - generic [ref=e280]: Manage Members
+        - link "Manage Meetings" [ref=e281] [cursor=pointer]:
+          - /url: /admin/meetings
+          - img [ref=e282]
+          - generic [ref=e284]: Manage Meetings
+      - button "User menu" [ref=e286]:
+        - generic [ref=e288]: "ON"
+        - generic [ref=e289]: Obiora Nnamdi Eze
+    - main [ref=e290]:
+      - generic [ref=e291]:
+        - navigation [ref=e292]:
+          - link "Meetings" [ref=e293] [cursor=pointer]:
+            - /url: /meetings
+          - img [ref=e294]
+          - generic [ref=e296]: July General Meeting
+        - generic [ref=e297]:
+          - generic [ref=e298]:
+            - generic [ref=e299]:
+              - generic [ref=e300]:
+                - generic [ref=e301]: General
+                - generic [ref=e302]: Completed
+              - heading "July General Meeting" [level=2] [ref=e303]
+              - generic [ref=e304]:
+                - paragraph [ref=e305]:
+                  - img [ref=e306]
+                  - text: Saturday, May 2, 2026 at 3:57 PM
+                - paragraph [ref=e308]:
+                  - img [ref=e309]
+                  - text: Town Hall, Mile 1, Port Harcourt
+                - paragraph [ref=e312]:
+                  - img [ref=e313]
+                  - text: "Host: Uche Tobias Ihejirika"
+            - link "Manage Meetings →" [ref=e316] [cursor=pointer]:
+              - /url: /admin/meetings
+          - generic [ref=e317]:
+            - paragraph [ref=e318]: Agenda
+            - paragraph [ref=e319]: 1. Opening prayer 2. Roll call 3. July dues collection 4. AGM announcement 5. AOB 6. Closing prayer
+        - generic [ref=e320]:
+          - heading "Meeting Minutes" [level=3] [ref=e321]
+          - paragraph [ref=e322]: No minutes uploaded yet.
+        - generic [ref=e323]:
+          - generic [ref=e324]:
+            - heading "Attendance(9/12 present)" [level=3] [ref=e325]:
+              - text: Attendance
+              - generic [ref=e326]: (9/12 present)
+            - button "Save" [ref=e327]:
+              - img
+              - text: Save
+          - generic [ref=e328]:
+            - generic [ref=e329]:
+              - generic [ref=e330]:
+                - paragraph [ref=e331]: Adaeze Chisom Okafor
+                - paragraph [ref=e332]: adaeze.okafor@akubueze.com
+              - combobox [ref=e333]:
+                - generic [ref=e334]: PRESENT
+                - img: ▼
+              - textbox [ref=e335]: PRESENT
+            - generic [ref=e336]:
+              - generic [ref=e337]:
+                - paragraph [ref=e338]: Adaora Blessing Nnadi
+                - paragraph [ref=e339]: a.nnadi@akubueze.com
+              - combobox [ref=e340]:
+                - generic [ref=e341]: PRESENT
+                - img: ▼
+              - textbox [ref=e342]: PRESENT
+            - generic [ref=e343]:
+              - generic [ref=e344]:
+                - paragraph [ref=e345]: Chidinma Uju Okeke
+                - paragraph [ref=e346]: c.okeke@akubueze.com
+              - combobox [ref=e347]:
+                - generic [ref=e348]: PRESENT
+                - img: ▼
+              - textbox [ref=e349]: PRESENT
+            - generic [ref=e350]:
+              - generic [ref=e351]:
+                - paragraph [ref=e352]: Chinedu Festus Okonkwo
+                - paragraph [ref=e353]: c.okonkwo@akubueze.com
+              - combobox [ref=e354]:
+                - generic [ref=e355]: PRESENT
+                - img: ▼
+              - textbox [ref=e356]: PRESENT
+            - generic [ref=e357]:
+              - generic [ref=e358]:
+                - paragraph [ref=e359]: Chukwuemeka Obinna Agu
+                - paragraph [ref=e360]: c.agu@akubueze.com
+              - combobox [ref=e361]:
+                - generic [ref=e362]: PRESENT
+                - img: ▼
+              - textbox [ref=e363]: PRESENT
+            - generic [ref=e364]:
+              - generic [ref=e365]:
+                - paragraph [ref=e366]: Emeka Chukwudi Onwudiwe
+                - paragraph [ref=e367]: emeka.onwudiwe@akubueze.com
+              - combobox [ref=e368]:
+                - generic [ref=e369]: PRESENT
+                - img: ▼
+              - textbox [ref=e370]: PRESENT
+            - generic [ref=e371]:
+              - generic [ref=e372]:
+                - paragraph [ref=e373]: Ikechukwu Silas Nwosu
+                - paragraph [ref=e374]: i.nwosu@akubueze.com
+              - combobox [ref=e375]:
+                - generic [ref=e376]: ABSENT
+                - img: ▼
+              - textbox [ref=e377]: ABSENT
+            - generic [ref=e378]:
+              - generic [ref=e379]:
+                - paragraph [ref=e380]: Ngozi Amaka Obi
+                - paragraph [ref=e381]: n.obi@akubueze.com
+              - combobox [ref=e382]:
+                - generic [ref=e383]: PRESENT
+                - img: ▼
+              - textbox [ref=e384]: PRESENT
+            - generic [ref=e385]:
+              - generic [ref=e386]:
+                - paragraph [ref=e387]: Nnamdi Godwin Ohaeri
+                - paragraph [ref=e388]: n.ohaeri@akubueze.com
+              - combobox [ref=e389]:
+                - generic [ref=e390]: ABSENT
+                - img: ▼
+              - textbox [ref=e391]: ABSENT
+            - generic [ref=e392]:
+              - generic [ref=e393]:
+                - paragraph [ref=e394]: Onyekachi Vera Eze
+                - paragraph [ref=e395]: o.eze@akubueze.com
+              - combobox [ref=e396]:
+                - generic [ref=e397]: ABSENT
+                - img: ▼
+              - textbox [ref=e398]: ABSENT
+            - generic [ref=e399]:
+              - generic [ref=e400]:
+                - paragraph [ref=e401]: Somtochukwu Paul Orji
+                - paragraph [ref=e402]: s.orji@akubueze.com
+              - combobox [ref=e403]:
+                - generic [ref=e404]: PRESENT
+                - img: ▼
+              - textbox [ref=e405]: PRESENT
+            - generic [ref=e406]:
+              - generic [ref=e407]:
+                - paragraph [ref=e408]: Uche Tobias Ihejirika
+                - paragraph [ref=e409]: u.ihejirika@akubueze.com
+              - combobox [ref=e410]:
+                - generic [ref=e411]: PRESENT
+                - img: ▼
+              - textbox [ref=e412]: PRESENT
+  - region "Notifications alt+T"
+  - alert [ref=e413]
